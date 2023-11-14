@@ -1,6 +1,7 @@
 # The Bible Simulator
 
 *smoll project by a smoll developer*
+
 --------------------------
 
 ## What is this?
