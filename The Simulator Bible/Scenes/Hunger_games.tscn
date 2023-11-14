@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://coy0gpixnvk1m"]
+
+[ext_resource type="Script" path="res://Scenes/Hunger_games_Cause.gd" id="1_7emt4"]
+[ext_resource type="FontVariation" uid="uid://2horrx768lgf" path="res://Universal/Font_Mono_16.tres" id="1_qcny6"]
+[ext_resource type="Script" path="res://Scenes/Hunger_games.gd" id="1_xfkkn"]
+[ext_resource type="Script" path="res://Scenes/Hunger_games_CommandProcessor.gd" id="2_1w7dg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn7hy"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_yp4ki"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_xn7hy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymmua"]
+bg_color = Color(1, 1, 1, 0.117647)
+
+[sub_resource type="Theme" id="Theme_ne7jl"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ymmua")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7ddp"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 0)
+
+[sub_resource type="Theme" id="Theme_0blvt"]
+LineEdit/colors/caret_color = Color(0, 0, 0, 0)
+LineEdit/font_sizes/font_size = 32
+LineEdit/styles/normal = SubResource("StyleBoxFlat_q7ddp")
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xfkkn")
+
+[node name="CommandProcessor" type="Node" parent="."]
+script = ExtResource("2_1w7dg")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 1400.0
+offset_bottom = 787.0
+theme = SubResource("Theme_yp4ki")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Effect" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Background/MarginContainer/VBoxContainer/Effect"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="HistoryRows" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/Effect/Scroll"]
+layout_mode = 2
+
+[node name="Cause" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme = SubResource("Theme_ne7jl")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Background/MarginContainer/VBoxContainer/Cause"]
+layout_mode = 2
+
+[node name="Caret" type="Label" parent="Background/MarginContainer/VBoxContainer/Cause/HSplitContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qcny6")
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="LineEdit" type="LineEdit" parent="Background/MarginContainer/VBoxContainer/Cause/HSplitContainer"]
+layout_mode = 2
+theme = SubResource("Theme_0blvt")
+theme_override_fonts/font = ExtResource("1_qcny6")
+max_length = 100
+script = ExtResource("1_7emt4")
+
+[connection signal="text_submitted" from="Background/MarginContainer/VBoxContainer/Cause/HSplitContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/VBoxContainer/Cause/HSplitContainer/LineEdit" to="Background/MarginContainer/VBoxContainer/Cause/HSplitContainer/LineEdit" method="_on_text_submitted"]

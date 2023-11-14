@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://2horrx768lgf"]
+
+[ext_resource type="FontFile" uid="uid://18tvditgjoak" path="res://Universal/Font.ttf" id="1_r120l"]
+
+[resource]
+base_font = ExtResource("1_r120l")
+spacing_top = 3

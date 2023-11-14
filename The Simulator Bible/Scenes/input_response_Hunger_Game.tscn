@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvn6tkg14ajak"]
+
+[ext_resource type="Script" path="res://Scenes/input_response_Hunger_Game.gd" id="1_q3x4i"]
+[ext_resource type="FontVariation" uid="uid://2horrx768lgf" path="res://Universal/Font_Mono_16.tres" id="1_vitk4"]
+
+[sub_resource type="Theme" id="Theme_turge"]
+Label/colors/font_color = Color(0.75, 0.75, 0.75, 1)
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_vitk4")
+
+[sub_resource type="Theme" id="Theme_xo860"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_vitk4")
+
+[node name="InputResponse" type="VBoxContainer"]
+script = ExtResource("1_q3x4i")
+
+[node name="InputHistory" type="Label" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_turge")
+text = " > This is what the person typed"
+
+[node name="Response" type="Label" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_xo860")
+text = "This is what the Computer respond with"
