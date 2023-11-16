@@ -5,128 +5,122 @@ var rng = RandomNumberGenerator.new()
 
 #Character1
 var Character1_Name = "Louis"
-#Out of 10
 var Character1_Health = 10
 var Character1_Sanity = 10
 var Character1_Might = 10
+var Character1_Kills = 0
 var Character1_Belongings = []
 var Character1_Enemies =[]
 var Character1_Friends = []
 var Character1_Traits = []
-var Character1_Kills = 0
 
 #Character2
 var Character2_Name = "Riley"
-#Out of 10
 var Character2_Health = 10
 var Character2_Sanity = 10
 var Character2_Might = 10
+var Character2_Kills = 0
 var Character2_Belongings = []
 var Character2_Enemies =[]
 var Character2_Friends = []
 var Character2_Traits = []
-var Character2_Kills = 0
 
 #Character3
 var Character3_Name = "Daniel"
-#Out of 10
 var Character3_Health = 10
 var Character3_Sanity = 10
 var Character3_Might = 10
+var Character3_Kills = 0
 var Character3_Belongings = []
 var Character3_Enemies =[]
 var Character3_Friends = []
 var Character3_Traits = []
-var Character3_Kills = 0
 
 #Character4
 var Character4_Name = "Aska"
-#Out of 10
 var Character4_Health = 10
 var Character4_Sanity = 10
 var Character4_Might = 10
+var Character4_Kills = 0
 var Character4_Belongings = []
 var Character4_Enemies =[]
 var Character4_Friends = []
 var Character4_Traits = []
-var Character4_Kills = 0
 
 #Character5
 var Character5_Name = "Jake"
-#Out of 10
 var Character5_Health = 10
 var Character5_Sanity = 10
 var Character5_Might = 10
+var Character5_Kills = 0
 var Character5_Belongings = []
 var Character5_Enemies =[]
 var Character5_Friends = []
 var Character5_Traits = []
-var Character5_Kills = 0
 
 #Character6
 var Character6_Name = "Ahan"
-#Out of 10
 var Character6_Health = 10
 var Character6_Sanity = 10
 var Character6_Might = 10
+var Character6_Kills = 0
 var Character6_Belongings = []
 var Character6_Enemies =[]
 var Character6_Friends = []
 var Character6_Traits = []
-var Character6_Kills = 0
 
 #Character7
 var Character7_Name = "Oakley"
-#Out of 10
 var Character7_Health = 10
 var Character7_Sanity = 10
 var Character7_Might = 10
+var Character7_Kills = 0
 var Character7_Belongings = []
 var Character7_Enemies =[]
 var Character7_Friends = []
 var Character7_Traits = []
-var Character7_Kills = 0
 
 #Character8
 var Character8_Name = "Mr Guck"
-#Out of 10
 var Character8_Health = 10
 var Character8_Sanity = 10
 var Character8_Might = 10
+var Character8_Kills = 0
 var Character8_Belongings = []
 var Character8_Enemies =[]
 var Character8_Friends = []
 var Character8_Traits = []
-var Character8_Kills = 0
 
 #Character9
 var Character9_Name = "Mr Dawson"
-#Out of 10
 var Character9_Health = 10
 var Character9_Sanity = 10
 var Character9_Might = 10
+var Character9_Kills = 0
 var Character9_Belongings = []
 var Character9_Enemies =[]
 var Character9_Friends = []
 var Character9_Traits = []
-var Character9_Kills = 0
 
 #Character10
 var Character10_Name = "Jesus"
-#Out of 10
 var Character10_Health = 10
 var Character10_Sanity = 10
 var Character10_Might = 10
+var Character10_Kills = 0
 var Character10_Belongings = []
 var Character10_Enemies =[]
 var Character10_Friends = []
 var Character10_Traits = []
-var Character10_Kills = 0
 
 #Variables
 var listOfCharacterNames = []
 var Day = 0
+var Night = false
+var listOfNumbers = [0,1,2,3,4,5,6,7,8,9]
+var listOfNumbersSimulateEventAmount = [1,1,1,1,1,2,2,2,3]
 #Temp Varaibles
+var time
 var Response = "NULL"
 var CharactersToSimulate = 10
 var SimulateEventAmount
@@ -137,16 +131,17 @@ var TempCharacter1
 var TempCharacter2
 var TempCharacter3
 var TempCharacter4
-var listOfNumbers = [0,1,2,3,4,5,6,7,8,9]
-var listOfNumbersSimulateEventAmount = [1,1,1,1,2,2]
 var VarCheckerTemp1
 var VarCheckerTemp2
 #--------------------
+#Connecting Scenes
 const InputResponse = preload("res://Scenes/input_response_Hunger_Game.tscn")
 
+#Connect Nodes
 @onready var history_rows = $Background/MarginContainer/VBoxContainer/Effect/Scroll/HistoryRows
 
 func _ready():
+	#OML IS THERE AN EASIER WAY 😫
 	listOfCharacterNames.append(Character1_Name)
 	listOfCharacterNames.append(Character2_Name)
 	listOfCharacterNames.append(Character3_Name)
@@ -159,15 +154,265 @@ func _ready():
 	listOfCharacterNames.append(Character10_Name)
 	
 func _on_line_edit_text_submitted(new_text):
+	#What I need to do every time (Reset all)
+	if Night:
+		Night = false
+		time = "Day ☀️"
+		Day += 1
+	else:
+		Night = true
+		time = "Night 🌑"
 	CharactersToSimulate = listOfNumbers.size()
 	listOfNumbersTemp = listOfNumbers.duplicate()
 	print("Lets Go")
+	
+	#Actually Starting this
 	var input_response = InputResponse.instantiate()
 	Response = "------------------------------------------------------------------------------------------"
+	
+	#For the title
+	if Day == 0:
+		Response += "\nThe Blood Bath\n"
+		BloodBath()
+	elif listOfNumbers.size() == 2:
+		Response += "\nThe Finale\n"
+	else:
+		Response +="\nDay - " + str(Day) + " |  Time - " + time + "\n"
 	Simulate()
-	Day += 1
+	
+	#Finish all of it off
 	input_response.set_text(new_text, Response)
 	history_rows.add_child(input_response)
+
+func BloodBath():
+	while CharactersToSimulate != 0:
+		SimulateEventAmount = listOfNumbersSimulateEventAmount.pick_random()
+		if SimulateEventAmount > CharactersToSimulate:
+			pass
+		else:
+			if SimulateEventAmount == 1:
+				SimulateRandomNumber = rng.randi_range(1,28)
+				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				#1 - Nothing Happens
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away from the Cornucopia"
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " trips while running away from the Cornucopia"
+					BruteForceVariableChanger(TempCharacter1, "Health", -1)
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " rushes to a nearby forest"
+				elif SimulateRandomNumber == 4:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " head south"
+				elif SimulateRandomNumber == 5:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " hits their head on a tree while running away"
+					BruteForceVariableChanger(TempCharacter1, "Health", -1)
+				elif SimulateRandomNumber == 6:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " scrambles out of the Cornucopia crying"
+					BruteForceVariableChanger(TempCharacter1, "Sanity", -1)
+				elif SimulateRandomNumber == 7:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " aimlessly runs away"
+				#2 - Gets stuff
+				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets an axe from a chest"
+					BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a wooden bow from a sack"
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+				elif SimulateRandomNumber == 10:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds a bow behind them"
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+				elif SimulateRandomNumber == 11:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs to get a fishing rod before running away"
+					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
+				elif SimulateRandomNumber == 12:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes away with a fishing gear"
+					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
+				elif SimulateRandomNumber == 13:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " obtains an iron sword in a chest"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 14:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " smuggles a dagger away"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 15:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snags a very sharp stick"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 16:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away and picks up a thick stick"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 17:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a baseball bat"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 18:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes to find a leather clawed glove"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 19:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a celtic themed shield"
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 20:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a round shield "
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 21:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds bandages"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 22:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a first aid kit"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 23:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a set of medical needles with a strange dug inside"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				#4 - Death
+				elif SimulateRandomNumber == 24:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " jumps off too early and explodes"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 25:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " tries to pick up a grenade but explodes in doing so"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 26:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs into a lone spear"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 27:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " falls into a hemlock bush"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 28:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs on a landmine and explodes"
+					listOfNumbers.erase(TempCharacter1)
+				listOfNumbersTemp.erase(TempCharacter1)
+			elif SimulateEventAmount == 2:
+				SimulateRandomNumber = rng.randi_range(1,15)
+				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				while TempCharacter1 == TempCharacter2:
+					TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				#2 - Getting Stuff
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " steals a bow off " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snatches some antiseptic off " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Health", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks a sword trying to steal it from " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Enemies")
+				elif SimulateRandomNumber == 4:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a sword before " + listOfCharacterNames[TempCharacter2] + " could get it"
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 5:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a sword that was dropped by " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 6:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " share out some blow darts with " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, "Bow", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+				#3 - Social shenanigans
+				elif SimulateRandomNumber == 7:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away with " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes into a forest behind " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Enemies")
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " crashes into eachother"
+					BruteForceVariableChanger(TempCharacter1, "Health", -1)
+					BruteForceVariableChanger(TempCharacter2, "Health", -1)
+				elif SimulateRandomNumber == 10:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " helps " + listOfCharacterNames[TempCharacter2] + " escape the Cornucopia"
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+				elif SimulateRandomNumber == 11:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " screams threats to " + listOfCharacterNames[TempCharacter2] + " while they run away"
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
+				#4 - Death
+				elif SimulateRandomNumber == 12:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " punches " + listOfCharacterNames[TempCharacter2] + " in their face to get a grenade"
+					BruteForceVariableChanger(TempCharacter2, "Health", -2)
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter1, "Explosive", "Add", "Belongings")
+				elif SimulateRandomNumber == 13:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " throws a grenade at the feet of " + listOfCharacterNames[TempCharacter2]
+					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+					listOfNumbers.erase(TempCharacter2)
+				elif SimulateRandomNumber == 14:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " stabs " + listOfCharacterNames[TempCharacter2]
+					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+					listOfNumbers.erase(TempCharacter2)
+				elif SimulateRandomNumber == 15:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs into " + listOfCharacterNames[TempCharacter2] + "'s knife"
+					BruteForceVariableChanger(TempCharacter2, "Kills", 1)
+					listOfNumbers.erase(TempCharacter1)
+					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
+				listOfNumbersTemp.erase(TempCharacter1)
+				listOfNumbersTemp.erase(TempCharacter2)
+			elif SimulateEventAmount == 3:
+				SimulateRandomNumber = rng.randi_range(1,9)
+				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				TempCharacter3 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				while TempCharacter1 == TempCharacter2 || TempCharacter2 == TempCharacter3 || TempCharacter1 == TempCharacter3:
+					TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+					TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+					TempCharacter3 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				#1 - Nothing Happens
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " charges out of the areana in opposite directions"
+				#2
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " distribute some medical supplies"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, "Medical", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter3, "Medical", "Add", "Belongings")
+				#3
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " trips and gets knocked out on a rock, " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " watch in horror."
+					BruteForceVariableChanger(TempCharacter1, "Health", -3)
+					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
+					BruteForceVariableChanger(TempCharacter3, "Sanity", -1)
+				#4
+				elif SimulateRandomNumber == 4:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " kick and kill " + listOfCharacterNames[TempCharacter3]
+					listOfNumbers.erase(TempCharacter3)
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+					BruteForceVariableChanger(TempCharacter1, "Kills",1)
+					BruteForceVariableChanger(TempCharacter2, "Kills",1)
+				elif SimulateRandomNumber == 5:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " failed to stab " + listOfCharacterNames[TempCharacter3]
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter3, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter3, TempCharacter2, "Add", "Enemies")
+				elif SimulateRandomNumber == 6:  
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " cracks " + listOfCharacterNames[TempCharacter2] + "'s head and " + listOfCharacterNames[TempCharacter3] + "'s backbone"
+					listOfNumbers.erase(TempCharacter2)
+					listOfNumbers.erase(TempCharacter3)
+					BruteForceVariableChanger(TempCharacter1, "Kills",2)
+				elif SimulateRandomNumber == 7: 
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets hacked at the neck by " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3]
+					listOfNumbers.erase(TempCharacter1)
+					BruteForceVariableChanger(TempCharacter2, "Kills",1)
+					BruteForceVariableChanger(TempCharacter3, "Kills",1)
+				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " helps " + listOfCharacterNames[TempCharacter2] + " escape the wrath of " + listOfCharacterNames[TempCharacter3] + "'s sword"
+					BruteForceVariableChanger(TempCharacter2, "Sanity",-1)
+					BruteForceVariableChanger(TempCharacter1, "Health", -1)
+					BruteForceArrayChanger(TempCharacter3, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " headshots " + listOfCharacterNames[TempCharacter2] + " while they were running with " + listOfCharacterNames[TempCharacter3]
+					listOfNumbers.erase(TempCharacter2)
+					BruteForceVariableChanger(TempCharacter3, "Sanity",-1)
+					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+				listOfNumbersTemp.erase(TempCharacter1)
+				listOfNumbersTemp.erase(TempCharacter2)
+				listOfNumbersTemp.erase(TempCharacter3)
+		print(BruteForceArrayGetter(TempCharacter1,"Friends"))
+		CharactersToSimulate -= SimulateEventAmount
 
 func Simulate():
 	while CharactersToSimulate != 0:
@@ -586,7 +831,6 @@ func Simulate():
 							Response += "\n" + listOfCharacterNames[TempCharacter1] + " discusses about winning with " + listOfCharacterNames[TempCharacter2]
 						elif SimulateRandomNumber == 5:
 							Response += "\n" + listOfCharacterNames[TempCharacter1] + " watches " + listOfCharacterNames[TempCharacter2] + " bathe in a river"
-			print()
 			print(BruteForceArrayGetter(TempCharacter1,"Friends"))
 			CharactersToSimulate -= SimulateEventAmount
 
