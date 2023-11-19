@@ -118,12 +118,12 @@ var listOfCharacterNames = []
 var Day = 0
 var Night = false
 var listOfNumbers = [0,1,2,3,4,5,6,7,8,9]
-var listOfNumbersSimulateEventAmount = [1,1,1,1,1,2,2,2,3]
+var listOfNumbersSimulateEventAmount = [1,1,1,1,1,2,2]
 #Temp Varaibles
 var time
 var Response = "NULL"
-var CharactersToSimulate = 10
-var SimulateEventAmount
+var CharactersToSimulate: int = 10
+var SimulateEventAmount: int
 var SimulateEventType 
 var SimulateRandomNumber
 var listOfNumbersTemp
@@ -178,7 +178,7 @@ func _on_line_edit_text_submitted(new_text):
 		Response += "\nThe Finale\n"
 	else:
 		Response +="\nDay - " + str(Day) + " |  Time - " + time + "\n"
-	Simulate()
+		BloodBath()
 	
 	#Finish all of it off
 	input_response.set_text(new_text, Response)
@@ -191,7 +191,7 @@ func BloodBath():
 			pass
 		else:
 			if SimulateEventAmount == 1:
-				SimulateRandomNumber = rng.randi_range(1,28)
+				SimulateRandomNumber = rng.randi_range(1,55)
 				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				#1 - Nothing Happens
 				if SimulateRandomNumber == 1:
@@ -211,147 +211,281 @@ func BloodBath():
 					BruteForceVariableChanger(TempCharacter1, "Sanity", -1)
 				elif SimulateRandomNumber == 7:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " aimlessly runs away"
-				#2 - Gets stuff
 				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs north"
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " heads to the sun rising from the east"
+				elif SimulateRandomNumber == 10:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " chases birds to the west"
+				
+				#2 - Gets stuff
+				elif SimulateRandomNumber == 11:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets an axe from a chest"
 					BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
-				elif SimulateRandomNumber == 9:
+				elif SimulateRandomNumber == 12:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets an axe from the grass"
+					BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
+				elif SimulateRandomNumber == 13:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a wooden bow from a sack"
 					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
-				elif SimulateRandomNumber == 10:
+				elif SimulateRandomNumber == 14:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds a bow behind them"
 					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
-				elif SimulateRandomNumber == 11:
+				elif SimulateRandomNumber == 15:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " rushes over to get a celtic looking bow"
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+				elif SimulateRandomNumber == 16:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " grabs a longbow"
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+				elif SimulateRandomNumber == 17:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs to get a fishing rod before running away"
 					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
-				elif SimulateRandomNumber == 12:
+				elif SimulateRandomNumber == 18:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes away with a fishing gear"
 					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
-				elif SimulateRandomNumber == 13:
+				elif SimulateRandomNumber == 19:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " obtains an iron sword in a chest"
 					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
-				elif SimulateRandomNumber == 14:
+				elif SimulateRandomNumber == 20:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " smuggles a dagger away"
 					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
-				elif SimulateRandomNumber == 15:
+				elif SimulateRandomNumber == 21:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snags a very sharp stick"
 					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
-				elif SimulateRandomNumber == 16:
+				elif SimulateRandomNumber == 22:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away with a sword"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 23:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a well hidden broadsword"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 24:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away and picks up a thick stick"
 					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-				elif SimulateRandomNumber == 17:
+				elif SimulateRandomNumber == 25:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a baseball bat"
 					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-				elif SimulateRandomNumber == 18:
+				elif SimulateRandomNumber == 26:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes to find a leather clawed glove"
 					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-				elif SimulateRandomNumber == 19:
+				elif SimulateRandomNumber == 27:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a frying pan"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 28:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " picks up a lead pipe"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 29:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " picks up a wrench"
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+				elif SimulateRandomNumber == 30:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a tonfa"
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 31:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " goes to a chest and recieves a chainblade"
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 32:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a celtic themed shield"
 					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
-				elif SimulateRandomNumber == 20:
-					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a round shield "
+				elif SimulateRandomNumber == 33:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a round shield"
 					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
-				elif SimulateRandomNumber == 21:
+				elif SimulateRandomNumber == 34:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a very thick stick"
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+				elif SimulateRandomNumber == 35:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds bandages"
 					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
-				elif SimulateRandomNumber == 22:
+				elif SimulateRandomNumber == 36:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a first aid kit"
 					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
-				elif SimulateRandomNumber == 23:
-					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a set of medical needles with a strange dug inside"
+				elif SimulateRandomNumber == 37:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a set of medical needles with a strange drug inside"
 					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 38:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds a packet of antibiotics"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 39:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " obtains a collection of painkillers"
+					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 40:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " picks up a can of beans"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+				elif SimulateRandomNumber == 41:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds a tin of honey"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+				elif SimulateRandomNumber == 42:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " shoves some nuts into their pocket"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+				elif SimulateRandomNumber == 43:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " finds an orange"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+				elif SimulateRandomNumber == 44:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets an unlabled tin of food from a chest"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+				elif SimulateRandomNumber == 45:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " obtains a bag of vegetables"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
 				#4 - Death
-				elif SimulateRandomNumber == 24:
+				elif SimulateRandomNumber == 46:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " jumps off too early and explodes"
 					listOfNumbers.erase(TempCharacter1)
-				elif SimulateRandomNumber == 25:
+				elif SimulateRandomNumber == 47:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " tries to pick up a grenade but explodes in doing so"
 					listOfNumbers.erase(TempCharacter1)
-				elif SimulateRandomNumber == 26:
+				elif SimulateRandomNumber == 48:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs into a lone spear"
 					listOfNumbers.erase(TempCharacter1)
-				elif SimulateRandomNumber == 27:
+				elif SimulateRandomNumber == 49:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " falls into a hemlock bush"
 					listOfNumbers.erase(TempCharacter1)
-				elif SimulateRandomNumber == 28:
+				elif SimulateRandomNumber == 50:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs on a landmine and explodes"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 51:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets blown up from a rigged chest"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 52:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " panics so badly they die from shock"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 53:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs to a chest and gets a sword, and stabs themselves"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 54:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " falls over on a rock and gets blunt force trauma to the head"
+					listOfNumbers.erase(TempCharacter1)
+				elif SimulateRandomNumber == 55:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " falls over before the beginning of the game, and dies"
 					listOfNumbers.erase(TempCharacter1)
 				listOfNumbersTemp.erase(TempCharacter1)
 			elif SimulateEventAmount == 2:
-				SimulateRandomNumber = rng.randi_range(1,15)
+				SimulateRandomNumber = rng.randi_range(1,33)
 				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				while TempCharacter1 == TempCharacter2:
 					TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				#2 - Getting Stuff
 				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snatches an axe from " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 2:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " steals a bow off " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
-				elif SimulateRandomNumber == 2:
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " steals a fishing rod from " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 4:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a sword before " + listOfCharacterNames[TempCharacter2] + " could get it"
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 5:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a bat before " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 6:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " takes a shield while " + listOfCharacterNames[TempCharacter2] + " was not looking"
+					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 7:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snatches some antiseptic off " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter1, "Health", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
-				elif SimulateRandomNumber == 3:
+				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " steals a medical kit from " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Health", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snatches a tub of chickpeas from " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 10:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks a sword trying to steal it from " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Enemies")
-				elif SimulateRandomNumber == 4:
+				elif SimulateRandomNumber == 11:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a sword before " + listOfCharacterNames[TempCharacter2] + " could get it"
-					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
 					BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
-				elif SimulateRandomNumber == 5:
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 12:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a sword that was dropped by " + listOfCharacterNames[TempCharacter2]
-					BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-				elif SimulateRandomNumber == 6:
+					BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+				elif SimulateRandomNumber == 13:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " share out some blow darts with " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter2, "Bow", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
+				elif SimulateRandomNumber == 14:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " share out some canned food with " + listOfCharacterNames[TempCharacter2]
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, "Food", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
+					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
 				#3 - Social shenanigans
-				elif SimulateRandomNumber == 7:
+				elif SimulateRandomNumber == 15:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away with " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
-				elif SimulateRandomNumber == 8:
+				elif SimulateRandomNumber == 16:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dashes into a forest behind " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Enemies")
-				elif SimulateRandomNumber == 9:
+				elif SimulateRandomNumber == 17:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " crashes into eachother"
 					BruteForceVariableChanger(TempCharacter1, "Health", -1)
 					BruteForceVariableChanger(TempCharacter2, "Health", -1)
-				elif SimulateRandomNumber == 10:
+				elif SimulateRandomNumber == 18:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " helps " + listOfCharacterNames[TempCharacter2] + " escape the Cornucopia"
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
-				elif SimulateRandomNumber == 11:
+				elif SimulateRandomNumber == 19:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " screams threats to " + listOfCharacterNames[TempCharacter2] + " while they run away"
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
 					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
 				#4 - Death
-				elif SimulateRandomNumber == 12:
+				elif SimulateRandomNumber == 20:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " punches " + listOfCharacterNames[TempCharacter2] + " in their face to get a grenade"
 					BruteForceVariableChanger(TempCharacter2, "Health", -2)
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
 					BruteForceArrayChanger(TempCharacter1, "Explosive", "Add", "Belongings")
-				elif SimulateRandomNumber == 13:
+				elif SimulateRandomNumber == 21:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " throws a grenade at the feet of " + listOfCharacterNames[TempCharacter2]
 					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
 					listOfNumbers.erase(TempCharacter2)
-				elif SimulateRandomNumber == 14:
+				elif SimulateRandomNumber == 22:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " stabs " + listOfCharacterNames[TempCharacter2]
 					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
 					listOfNumbers.erase(TempCharacter2)
-				elif SimulateRandomNumber == 15:
+				elif SimulateRandomNumber == 23:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs into " + listOfCharacterNames[TempCharacter2] + "'s knife"
 					BruteForceVariableChanger(TempCharacter2, "Kills", 1)
 					listOfNumbers.erase(TempCharacter1)
 					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
+				#1 I just can't be asked with the awful way I mapped this out
+				elif SimulateRandomNumber == 24:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " sees " + listOfCharacterNames[TempCharacter2] + " and runs away"
+				elif SimulateRandomNumber == 25:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " scream's " + listOfCharacterNames[TempCharacter2] + " name and runs away"
+				elif SimulateRandomNumber == 26:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " recognises " + listOfCharacterNames[TempCharacter2] + " while headinmg south"
+				elif SimulateRandomNumber == 27:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " is shocked by the beauty of " + listOfCharacterNames[TempCharacter2] + " as they run away"
+				elif SimulateRandomNumber == 28:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " is horrified by the looks of " + listOfCharacterNames[TempCharacter2] + " during their run to the north"
+				elif SimulateRandomNumber == 29:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " questions if they seen " + listOfCharacterNames[TempCharacter2] + " before"
+				elif SimulateRandomNumber == 30:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs east, but quickly runs west instead as they thought " + listOfCharacterNames[TempCharacter2] + " was following them"
+				elif SimulateRandomNumber == 31:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " heads in the same direction as " + listOfCharacterNames[TempCharacter2]
+				elif SimulateRandomNumber == 32:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " blushes at the sight of " + listOfCharacterNames[TempCharacter2] + ", but tries to hide it"
+				elif SimulateRandomNumber == 33:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " slowly walks away from " + listOfCharacterNames[TempCharacter2] + " as a hopeful manner of respect"
 				listOfNumbersTemp.erase(TempCharacter1)
 				listOfNumbersTemp.erase(TempCharacter2)
 			elif SimulateEventAmount == 3:
-				SimulateRandomNumber = rng.randi_range(1,9)
+				SimulateRandomNumber = rng.randi_range(1,20)
 				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				TempCharacter3 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
@@ -362,57 +496,102 @@ func BloodBath():
 				#1 - Nothing Happens
 				if SimulateRandomNumber == 1:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " charges out of the areana in opposite directions"
-				#2
 				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " charges out of the areana in similiar directions"
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " are taken back by the beauty of " + listOfCharacterNames[TempCharacter3]
+				elif SimulateRandomNumber == 4:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " are taken back by the uglyness of " + listOfCharacterNames[TempCharacter3]
+				elif SimulateRandomNumber == 5:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " watches " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " panic while leaving the Cornucopia"
+				#2
+				elif SimulateRandomNumber == 6:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + ", " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " distribute some medical supplies"
 					BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter2, "Medical", "Add", "Belongings")
 					BruteForceArrayChanger(TempCharacter3, "Medical", "Add", "Belongings")
+				elif SimulateRandomNumber == 7:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " snatches a bow which " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " were disbuting over"
+					BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter3, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 8:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " steals some food which" + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " were competing for"
+					BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Enemies")
+				elif SimulateRandomNumber == 9:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " were too slow to get an axe, since " + listOfCharacterNames[TempCharacter3] + " ran to it first"
+					BruteForceArrayChanger(TempCharacter3, "Axe", "Add", "Belongings")
+				elif SimulateRandomNumber == 10:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " team up to get some fishing gear off " + listOfCharacterNames[TempCharacter3]
+					BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter2, "Fishing", "Add", "Belongings")
+					BruteForceArrayChanger(TempCharacter3, TempCharacter1, "Add", "Enemies")
+					BruteForceArrayChanger(TempCharacter3, TempCharacter2, "Add", "Enemies")
 				#3
-				elif SimulateRandomNumber == 3:
+				elif SimulateRandomNumber == 11:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " trips and gets knocked out on a rock, " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3] + " watch in horror."
 					BruteForceVariableChanger(TempCharacter1, "Health", -3)
 					BruteForceVariableChanger(TempCharacter2, "Sanity", -1)
 					BruteForceVariableChanger(TempCharacter3, "Sanity", -1)
 				#4
-				elif SimulateRandomNumber == 4:
+				elif SimulateRandomNumber == 12:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " kick and kill " + listOfCharacterNames[TempCharacter3]
 					listOfNumbers.erase(TempCharacter3)
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
 					BruteForceVariableChanger(TempCharacter1, "Kills",1)
 					BruteForceVariableChanger(TempCharacter2, "Kills",1)
-				elif SimulateRandomNumber == 5:
+				elif SimulateRandomNumber == 13:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " and " + listOfCharacterNames[TempCharacter2] + " failed to stab " + listOfCharacterNames[TempCharacter3]
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter1, TempCharacter2, "Add", "Friends")
 					BruteForceArrayChanger(TempCharacter3, TempCharacter1, "Add", "Enemies")
 					BruteForceArrayChanger(TempCharacter3, TempCharacter2, "Add", "Enemies")
-				elif SimulateRandomNumber == 6:  
+				elif SimulateRandomNumber == 14:  
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " cracks " + listOfCharacterNames[TempCharacter2] + "'s head and " + listOfCharacterNames[TempCharacter3] + "'s backbone"
 					listOfNumbers.erase(TempCharacter2)
 					listOfNumbers.erase(TempCharacter3)
 					BruteForceVariableChanger(TempCharacter1, "Kills",2)
-				elif SimulateRandomNumber == 7: 
+				elif SimulateRandomNumber == 15: 
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets hacked at the neck by " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3]
 					listOfNumbers.erase(TempCharacter1)
 					BruteForceVariableChanger(TempCharacter2, "Kills",1)
 					BruteForceVariableChanger(TempCharacter3, "Kills",1)
-				elif SimulateRandomNumber == 8:
+				elif SimulateRandomNumber == 16:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " helps " + listOfCharacterNames[TempCharacter2] + " escape the wrath of " + listOfCharacterNames[TempCharacter3] + "'s sword"
 					BruteForceVariableChanger(TempCharacter2, "Sanity",-1)
 					BruteForceVariableChanger(TempCharacter1, "Health", -1)
 					BruteForceArrayChanger(TempCharacter3, "Sword", "Add", "Belongings")
-				elif SimulateRandomNumber == 9:
+					BruteForceArrayChanger(TempCharacter2, TempCharacter2, "Add", "Friends")
+				elif SimulateRandomNumber == 17:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " headshots " + listOfCharacterNames[TempCharacter2] + " while they were running with " + listOfCharacterNames[TempCharacter3]
 					listOfNumbers.erase(TempCharacter2)
 					BruteForceVariableChanger(TempCharacter3, "Sanity",-1)
 					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+				elif SimulateRandomNumber == 18:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " shoots " + listOfCharacterNames[TempCharacter2] + " and " + listOfCharacterNames[TempCharacter3]
+					listOfNumbers.erase(TempCharacter2)
+					listOfNumbers.erase(TempCharacter3)
+					BruteForceVariableChanger(TempCharacter1, "Kills", 2)
+				elif SimulateRandomNumber == 19:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " heroically protects " + listOfCharacterNames[TempCharacter2] + " from " + listOfCharacterNames[TempCharacter3] + "'s dagger and dies doing so"
+					listOfNumbers.erase(TempCharacter1)
+					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+				elif SimulateRandomNumber == 20:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " chaotically kills " + listOfCharacterNames[TempCharacter2] + " while they were killing " + listOfCharacterNames[TempCharacter3]
+					listOfNumbers.erase(TempCharacter2)
+					listOfNumbers.erase(TempCharacter3)
+					BruteForceVariableChanger(TempCharacter1, "Sanity",-1)
+					BruteForceVariableChanger(TempCharacter1, "Kills", 1)
+					BruteForceVariableChanger(TempCharacter2, "Kills", 1)
 				listOfNumbersTemp.erase(TempCharacter1)
 				listOfNumbersTemp.erase(TempCharacter2)
 				listOfNumbersTemp.erase(TempCharacter3)
+			CharactersToSimulate -= SimulateEventAmount
 		print(BruteForceArrayGetter(TempCharacter1,"Friends"))
-		CharactersToSimulate -= SimulateEventAmount
+		print(CharactersToSimulate)
 
 func Simulate():
 	while CharactersToSimulate != 0:
@@ -928,7 +1107,7 @@ func BruteForceVariableChanger(Character, Element, Change):
 
 func BruteForceArrayChanger(Character, Element, Change, List):
 	if Character == 0:
-		if List == "Belongnings":
+		if List == "Belongings":
 			if Change == "Add":
 				Character1_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -943,8 +1122,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character1_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character1_Enemies.erase(Element)
-	if Character == 1:
-		if List == "Belongnings":
+	elif Character == 1:
+		if List == "Belongings":
 			if Change == "Add":
 				Character2_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -959,8 +1138,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character2_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character2_Enemies.erase(Element)
-	if Character == 2:
-		if List == "Belongnings":
+	elif Character == 2:
+		if List == "Belongings":
 			if Change == "Add":
 				Character3_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -975,8 +1154,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character3_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character3_Enemies.erase(Element)
-	if Character == 3:
-		if List == "Belongnings":
+	elif Character == 3:
+		if List == "Belongings":
 			if Change == "Add":
 				Character4_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -991,8 +1170,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character4_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character4_Enemies.erase(Element)
-	if Character == 4:
-		if List == "Belongnings":
+	elif Character == 4:
+		if List == "Belongings":
 			if Change == "Add":
 				Character5_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1007,8 +1186,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character5_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character5_Enemies.erase(Element)
-	if Character == 5:
-		if List == "Belongnings":
+	elif Character == 5:
+		if List == "Belongings":
 			if Change == "Add":
 				Character6_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1023,8 +1202,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character6_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character6_Enemies.erase(Element)
-	if Character == 6:
-		if List == "Belongnings":
+	elif Character == 6:
+		if List == "Belongings":
 			if Change == "Add":
 				Character7_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1039,8 +1218,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character7_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character7_Enemies.erase(Element)
-	if Character == 7:
-		if List == "Belongnings":
+	elif Character == 7:
+		if List == "Belongings":
 			if Change == "Add":
 				Character8_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1055,8 +1234,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character9_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character9_Enemies.erase(Element)
-	if Character == 8:
-		if List == "Belongnings":
+	elif Character == 8:
+		if List == "Belongings":
 			if Change == "Add":
 				Character9_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1071,8 +1250,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character9_Enemies.append(Element)
 			elif Change == "Subtract":
 				Character9_Enemies.erase(Element)
-	if Character == 9:
-		if List == "Belongnings":
+	elif Character == 9:
+		if List == "Belongings":
 			if Change == "Add":
 				Character10_Belongings.append(Element)
 			elif Change == "Subtract":
@@ -1188,63 +1367,63 @@ func BruteForceArrayGetter(Character, Element):
 			return Character1_Friends
 		elif Element == "Enemies":
 			return Character1_Enemies
-	if Character == 1:
+	elif Character == 1:
 		if Element == "Belongings":
 			return Character2_Belongings
 		elif Element == "Friends":
 			return Character2_Friends
 		elif Element == "Enemies":
 			return Character2_Enemies
-	if Character == 2:
+	elif Character == 2:
 		if Element == "Belongings":
 			return Character3_Belongings
 		elif Element == "Friends":
 			return Character3_Friends
 		elif Element == "Enemies":
 			return Character3_Enemies
-	if Character == 3:
+	elif Character == 3:
 		if Element == "Belongings":
 			return Character4_Belongings
 		elif Element == "Friends":
 			return Character4_Friends
 		elif Element == "Enemies":
 			return Character4_Enemies
-	if Character == 4:
+	elif Character == 4:
 		if Element == "Belongings":
 			return Character5_Belongings
 		elif Element == "Friends":
 			return Character5_Friends
 		elif Element == "Enemies":
 			return Character5_Enemies
-	if Character == 5:
+	elif Character == 5:
 		if Element == "Belongings":
 			return Character6_Belongings
 		elif Element == "Friends":
 			return Character6_Friends
 		elif Element == "Enemies":
 			return Character6_Enemies
-	if Character == 6:
+	elif Character == 6:
 		if Element == "Belongings":
 			return Character7_Belongings
 		elif Element == "Friends":
 			return Character7_Friends
 		elif Element == "Enemies":
 			return Character7_Enemies
-	if Character == 7:
+	elif Character == 7:
 		if Element == "Belongings":
 			return Character8_Belongings
 		elif Element == "Friends":
 			return Character8_Friends
 		elif Element == "Enemies":
 			return Character8_Enemies
-	if Character == 8:
+	elif Character == 8:
 		if Element == "Belongings":
 			return Character9_Belongings
 		elif Element == "Friends":
 			return Character9_Friends
 		elif Element == "Enemies":
 			return Character9_Enemies
-	if Character == 9:
+	elif Character == 9:
 		if Element == "Belongings":
 			return Character10_Belongings
 		elif Element == "Friends":
