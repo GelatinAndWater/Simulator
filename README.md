@@ -1,4 +1,4 @@
-# The Bible Simulator
+# The Simulator Bible
 
 *smoll project by a smoll developer*
 
