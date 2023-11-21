@@ -118,7 +118,7 @@ var listOfCharacterNames = []
 var Day = 0
 var Night = false
 var listOfNumbers = [0,1,2,3,4,5,6,7,8,9]
-var listOfNumbersSimulateEventAmount = [1,1,1,1,1,2,2]
+var listOfNumbersSimulateEventAmount = [1,1,1,1,1,1,2,2,2,3]
 #Temp Varaibles
 var time
 var Response = "NULL"
@@ -178,7 +178,7 @@ func _on_line_edit_text_submitted(new_text):
 		Response += "\nThe Finale\n"
 	else:
 		Response +="\nDay - " + str(Day) + " |  Time - " + time + "\n"
-		BloodBath()
+		SimulateSeperation()
 	
 	#Finish all of it off
 	input_response.set_text(new_text, Response)
@@ -593,6 +593,23 @@ func BloodBath():
 		print(BruteForceArrayGetter(TempCharacter1,"Friends"))
 		print(CharactersToSimulate)
 
+func SimulateSeperation():
+	while CharactersToSimulate != 0:
+		SimulateEventAmount = listOfNumbersSimulateEventAmount.pick_random()
+		if SimulateEventAmount > CharactersToSimulate:
+			pass
+		else:
+			if rng.randi_range(1,3) == 1:
+				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
+					pass
+				elif BruteForceVariableGetter(TempCharacter1,"Hunger") < 5:
+					pass
+				elif BruteForceVariableGetter(TempCharacter1,"Sanity") < 5:
+					pass
+				elif BruteForceVariableGetter(TempCharacter1,"Might") < 5:
+					pass
+			CharactersToSimulate -= SimulateEventAmount
 func Simulate():
 	while CharactersToSimulate != 0:
 		SimulateEventAmount = listOfNumbersSimulateEventAmount.pick_random()
