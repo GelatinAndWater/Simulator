@@ -602,13 +602,24 @@ func SimulateSeperation():
 			if rng.randi_range(1,3) == 1:
 				TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
-					pass
+					#Health Event ⚕️
+					HealthEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Hunger") < 5:
-					pass
+					#Hunger Event 🤤
+					HungerEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Sanity") < 5:
-					pass
+					#Sanity Event 🧘
+					SanityEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Might") < 5:
-					pass
+					#Might Event 💪
+					MightEvent()
+			else:
+				if Night:
+					if rng.randi_range(1,4) == 1:
+						#Boring event 🥱
+						DescriptiveEvent()
+					elif 
+						
 			CharactersToSimulate -= SimulateEventAmount
 func Simulate():
 	while CharactersToSimulate != 0:
