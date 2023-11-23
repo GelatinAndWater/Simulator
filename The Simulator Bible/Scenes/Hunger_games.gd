@@ -835,6 +835,24 @@ func TradingEvent():
 		elif SimulateRandomNumber == 4:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " builds a wooden sword" 
 			BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+		elif SimulateRandomNumber == 5:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+		elif SimulateRandomNumber == 6:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+		elif SimulateRandomNumber == 7:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+		elif SimulateRandomNumber == 8:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+		elif SimulateRandomNumber == 9:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+		elif SimulateRandomNumber == 10:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
 
 
 #Communication Event 📞
