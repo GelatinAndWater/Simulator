@@ -1,0 +1,31 @@
+Belongings:
+- Axe
+- Bow
+- Fishing
+- Sword
+- Melee
+- Defense
+- Medical
+- Food
+
+Character Stats:
+- Name
+- Health
+- Sanity
+- Might
+- Kills
+- Hunger
+- Belongings (Array)
+- Enemies (Array)
+- Friends (Array)
+- Traits (Array)
+
+Types of Events:
+- Descriptive
+- Trading
+- Communication
+- Violence
+- Health
+- Sanity
+- Hunger
+- Might
