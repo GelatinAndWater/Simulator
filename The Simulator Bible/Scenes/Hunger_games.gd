@@ -829,6 +829,13 @@ func TradingEvent():
 		elif SimulateRandomNumber == 2:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a stick and some nettles to make a bow"
 			BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+		elif SimulateRandomNumber == 3:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " produces a makeshift fishing rod"
+			BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongnings")
+		elif SimulateRandomNumber == 4:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " builds a wooden sword" 
+			BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+
 
 #Communication Event 📞
 func CommunicationEvent():
