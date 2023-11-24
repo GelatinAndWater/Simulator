@@ -213,20 +213,34 @@ func SimulateSeperation():
 			if rng.randi_range(2,3) == 1:
 				if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
 					#Health Event ⚕️
-					#HealthEvent()
-					pass
+					HealthEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Hunger") < 5:
 					#Hunger Event 🤤
-					#HungerEvent()
-					pass
+					HungerEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Sanity") < 5:
 					#Sanity Event 🧘
-					#SanityEvent()
-					pass
+					SanityEvent()
 				elif BruteForceVariableGetter(TempCharacter1,"Might") < 5:
 					#Might Event 💪
-					#MightEvent()
-					pass
+					MightEvent()
+				else:
+					SimulateSeperationVar = rng.randi_range(1,4)
+					#Fixing some logic
+					if SimulateSeperationVar == 3 && SimulateEventAmount == 1:
+						SimulateSeperationVar = 1
+					
+					if SimulateSeperationVar == 1:
+						#Boring Event 🥱
+						DescriptiveEvent()
+					elif SimulateSeperationVar == 2:
+						#Trading Event 🤝
+						TradingEvent()
+					elif SimulateSeperationVar == 3:
+						#Communication Event 📞
+						CommunicationEvent()
+					elif SimulateSeperationVar == 4:
+						#Violence Event 💥
+						ViolenceEvent()
 			else:
 				if Night == false:
 					SimulateSeperationVar = rng.randi_range(1,4)
@@ -240,15 +254,21 @@ func SimulateSeperation():
 					elif SimulateSeperationVar == 2:
 						#Trading Event 🤝
 						TradingEvent()
-						pass
 					elif SimulateSeperationVar == 3:
 						#Communication Event 📞
 						CommunicationEvent()
-						pass
 					elif SimulateSeperationVar == 4:
 						#Violence Event 💥
 						ViolenceEvent()
-						pass
+			if CharactersToSimulate == 1:
+				listOfNumbersTemp.erase(TempCharacter1)
+			elif CharactersToSimulate == 2:
+				listOfNumbersTemp.erase(TempCharacter1)
+				listOfNumbersTemp.erase(TempCharacter2)
+			elif CharactersToSimulate == 3:
+				listOfNumbersTemp.erase(TempCharacter1)
+				listOfNumbersTemp.erase(TempCharacter2)
+				listOfNumbersTemp.erase(TempCharacter3)
 			CharactersToSimulate -= SimulateEventAmount
 
 #First Event🩸
@@ -659,6 +679,46 @@ func BloodBath():
 				listOfNumbersTemp.erase(TempCharacter3)
 			CharactersToSimulate -= SimulateEventAmount
 
+#Health Event
+func HealthEvent():
+	if SimulateEventAmount == 1:
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Health")
+		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " uses some medical equipment successfully"
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks the medical equipment while trying to treat a wound"
+
+#Hunger Event
+func HungerEvent():
+	if SimulateEventAmount == 1:
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Hunger")
+		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " eats some food"
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " drops their food in some mud"
+
+#Sanity Event
+func SanityEvent():
+	if SimulateEventAmount == 1:
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Sanity")
+		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " meditates with the birds"
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " could not find their inner peace"
+
+#Might Event
+func MightEvent():
+	if SimulateEventAmount == 1:
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Might")
+		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " works out by lifting logs"
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " hurts themselves while working out"
+
 #Boring Event 🥱
 func DescriptiveEvent():
 	if SimulateEventAmount == 1:
@@ -822,38 +882,58 @@ func DescriptiveEvent():
 #Trading Event 🤝
 func TradingEvent():
 	if SimulateEventAmount == 1:
-		SimulateRandomNumber = rng.randi_range(1,10)
-		if SimulateRandomNumber == 1:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " creates a makeshift axe"
-			BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
-		elif SimulateRandomNumber == 2:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a stick and some nettles to make a bow"
-			BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
-		elif SimulateRandomNumber == 3:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " produces a makeshift fishing rod"
-			BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongnings")
-		elif SimulateRandomNumber == 4:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " builds a wooden sword" 
-			BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
-		elif SimulateRandomNumber == 5:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-		elif SimulateRandomNumber == 6:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-		elif SimulateRandomNumber == 7:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-		elif SimulateRandomNumber == 8:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-		elif SimulateRandomNumber == 9:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-		elif SimulateRandomNumber == 10:
-			Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
-			BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
-
+		if rng.randi_range(1,2) == 1:
+			SimulateRandomNumber = rng.randi_range(1,10)
+			if SimulateRandomNumber == 1:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " creates a makeshift axe"
+				BruteForceArrayChanger(TempCharacter1, "Axe", "Add", "Belongings")
+			elif SimulateRandomNumber == 2:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets a stick and some nettles to make a bow"
+				BruteForceArrayChanger(TempCharacter1, "Bow", "Add", "Belongings")
+			elif SimulateRandomNumber == 3:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " produces a makeshift fishing rod"
+				BruteForceArrayChanger(TempCharacter1, "Fishing", "Add", "Belongnings")
+			elif SimulateRandomNumber == 4:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " builds a wooden sword" 
+				BruteForceArrayChanger(TempCharacter1, "Sword", "Add", "Belongings")
+			elif SimulateRandomNumber == 5:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " crafts a cudgel with a massive stick and some thorns" 
+				BruteForceArrayChanger(TempCharacter1, "Melee", "Add", "Belongings")
+			elif SimulateRandomNumber == 6:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets finds a goat horn and plans on using it for a blocker" 
+				BruteForceArrayChanger(TempCharacter1, "Defense", "Add", "Belongings")
+			elif SimulateRandomNumber == 7:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets some wild herbal remedies for the future" 
+				BruteForceArrayChanger(TempCharacter1, "Medical", "Add", "Belongings")
+			elif SimulateRandomNumber == 8:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " gathers some wild garlic" 
+				BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+			elif SimulateRandomNumber == 9:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " collects some truffles beneath trees" 
+				BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+			elif SimulateRandomNumber == 10:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " picks up some mushrooms, unknowing if they are safe or not" 
+				BruteForceArrayChanger(TempCharacter1, "Food", "Add", "Belongings")
+		else:
+			SimulateRandomNumber = rng.randi_range(1,6)
+			if SimulateRandomNumber == 1:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " fails to make an axe"
+			elif SimulateRandomNumber == 2:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " hurts themselves in the process of making a bow"
+			elif SimulateRandomNumber == 3:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " plans to make a fishing rod but becomes too picky about stick"
+			elif SimulateRandomNumber == 4:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " fails to make a sword" 
+			elif SimulateRandomNumber == 5:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks their melee weapon they just crafted" 
+			elif SimulateRandomNumber == 6:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " was unsuccessful to find some wild food" 
+			elif SimulateRandomNumber == 7:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " forgets where they placed all of their items" 
+				BruteForceArrayChanger(TempCharacter1, 0, "Delete", "Belongings")
+			elif SimulateRandomNumber == 8:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " falls over while they're in a river and loses all of their items" 
+				BruteForceArrayChanger(TempCharacter1, 0, "Delete", "Belongings")
 
 #Communication Event 📞
 func CommunicationEvent():
@@ -1111,6 +1191,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character1_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character1_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character1_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character1_Friends.append(Element)
@@ -1127,6 +1209,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character2_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character2_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character2_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character2_Friends.append(Element)
@@ -1143,6 +1227,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character3_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character3_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character3_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character3_Friends.append(Element)
@@ -1159,6 +1245,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character4_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character4_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character4_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character4_Friends.append(Element)
@@ -1175,6 +1263,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character5_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character5_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character5_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character5_Friends.append(Element)
@@ -1191,6 +1281,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character6_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character6_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character6_Belongings.clear()
 		elif List == "Friends":
 			if Change == "Add":
 				Character6_Friends.append(Element)
@@ -1207,6 +1299,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character7_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character7_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character7_Belongings.clear()
 		if List == "Friends":
 			if Change == "Add":
 				Character7_Friends.append(Element)
@@ -1223,6 +1317,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character8_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character8_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character8_Belongings.clear()
 		if List == "Friends":
 			if Change == "Add":
 				Character8_Friends.append(Element)
@@ -1239,6 +1335,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character9_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character9_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character9_Belongings.clear()
 		if List == "Friends":
 			if Change == "Add":
 				Character9_Friends.append(Element)
@@ -1255,6 +1353,8 @@ func BruteForceArrayChanger(Character, Element, Change, List):
 				Character10_Belongings.append(Element)
 			elif Change == "Subtract":
 				Character10_Belongings.erase(Element)
+			elif Change == "Delete":
+				Character10_Belongings.clear()
 		if List == "Friends":
 			if Change == "Add":
 				Character10_Friends.append(Element)
