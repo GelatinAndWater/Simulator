@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="The Simulator Bible"
-run/main_scene="res://Scenes/Hunger_games.tscn"
+run/main_scene="res://Options/Options.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Universal/Global.gd"
 
 [display]
 
@@ -24,3 +28,5 @@ window/stretch/mode="viewport"
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0

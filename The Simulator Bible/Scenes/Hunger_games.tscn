@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://coy0gpixnvk1m"]
+[gd_scene load_steps=16 format=3 uid="uid://coy0gpixnvk1m"]
 
 [ext_resource type="Script" path="res://Scenes/Hunger_games_Cause.gd" id="1_7emt4"]
 [ext_resource type="FontVariation" uid="uid://2horrx768lgf" path="res://Universal/Font_Mono_16.tres" id="1_qcny6"]
 [ext_resource type="Script" path="res://Scenes/Hunger_games.gd" id="1_xfkkn"]
 [ext_resource type="Script" path="res://Scenes/Hunger_games_CommandProcessor.gd" id="2_1w7dg"]
+[ext_resource type="Texture2D" uid="uid://cskjbqua81tia" path="res://Scenes/Dynamic Background/Battle.png" id="2_2bbsh"]
+[ext_resource type="Texture2D" uid="uid://12glq5e3tine" path="res://Scenes/Dynamic Background/Communication.png" id="3_1b0cq"]
+[ext_resource type="Texture2D" uid="uid://ccacad05ouij8" path="res://Scenes/Dynamic Background/Dynamic.png" id="4_walbf"]
+[ext_resource type="Texture2D" uid="uid://ro42qaqdw4un" path="res://Scenes/Dynamic Background/Peaceful.png" id="5_cso8c"]
+[ext_resource type="Texture2D" uid="uid://bc343vsuvk76u" path="res://Scenes/Dynamic Background/Trading.png" id="6_wdv85"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn7hy"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [sub_resource type="Theme" id="Theme_yp4ki"]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xn7hy")
@@ -27,22 +32,57 @@ LineEdit/styles/normal = SubResource("StyleBoxFlat_q7ddp")
 
 [node name="Game" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_xfkkn")
+
+[node name="White Splat" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2286.0
+offset_bottom = 1286.0
+
+[node name="Battle" type="Sprite2D" parent="."]
+position = Vector2(1135, 650)
+scale = Vector2(3, 3)
+texture = ExtResource("2_2bbsh")
+
+[node name="Communication" type="Sprite2D" parent="."]
+position = Vector2(1135, 650)
+scale = Vector2(3, 3)
+texture = ExtResource("3_1b0cq")
+
+[node name="Dynamic" type="Sprite2D" parent="."]
+position = Vector2(1135, 650)
+scale = Vector2(3, 3)
+texture = ExtResource("4_walbf")
+
+[node name="Peaceful" type="Sprite2D" parent="."]
+position = Vector2(1135, 650)
+scale = Vector2(3, 3)
+texture = ExtResource("5_cso8c")
+
+[node name="Trading" type="Sprite2D" parent="."]
+position = Vector2(1135, 650)
+scale = Vector2(3, 3)
+texture = ExtResource("6_wdv85")
+
+[node name="Simulator\'s Box" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 455.714
+offset_top = 148.571
+offset_right = 1855.71
+offset_bottom = 1023.57
+color = Color(0, 0, 0, 1)
 
 [node name="CommandProcessor" type="Node" parent="."]
 script = ExtResource("2_1w7dg")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 112.0
-offset_right = 1400.0
-offset_bottom = 787.0
+offset_left = 555.714
+offset_top = 248.571
+offset_right = 1755.71
+offset_bottom = 923.571
 theme = SubResource("Theme_yp4ki")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]

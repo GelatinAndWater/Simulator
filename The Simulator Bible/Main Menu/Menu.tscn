@@ -1,0 +1,568 @@
+[gd_scene load_steps=31 format=3 uid="uid://dwxqiyiponvv8"]
+
+[ext_resource type="Texture2D" uid="uid://bdpioggs76wvg" path="res://Main Menu/Images/gradient.png" id="1_uovyg"]
+[ext_resource type="Script" path="res://Main Menu/Menu.gd" id="1_v4f5b"]
+[ext_resource type="AudioStream" uid="uid://bkro01hj3lfli" path="res://Sounds/Pop 1.wav" id="3_cqy76"]
+[ext_resource type="Texture2D" uid="uid://b1v0xnxi5r4oh" path="res://Main Menu/Images/Leaves/Leaf_8.png" id="3_fkiw2"]
+[ext_resource type="Texture2D" uid="uid://bu6p2skkxeslc" path="res://Main Menu/Images/Leaves/Leaf_4.png" id="4_xpijm"]
+[ext_resource type="Texture2D" uid="uid://cvf3i5o87diyh" path="res://Main Menu/Images/Leaves/Leaf_1.png" id="5_5u2y6"]
+[ext_resource type="Texture2D" uid="uid://cvgwfvxwcppgj" path="res://Main Menu/Images/Leaves/Leaf_2.png" id="6_csy1o"]
+[ext_resource type="Texture2D" uid="uid://bqtuibhpmvx7q" path="res://Main Menu/Images/Leaves/Leaf_3.png" id="7_ljfaq"]
+[ext_resource type="Texture2D" uid="uid://djheclu6on601" path="res://Main Menu/Images/Leaves/Leaf_5.png" id="8_x3gii"]
+[ext_resource type="Texture2D" uid="uid://c2rrwlajkd43m" path="res://Main Menu/Images/Leaves/Leaf_6.png" id="9_i4hhm"]
+[ext_resource type="Texture2D" uid="uid://bhctboviy8gq3" path="res://Main Menu/Images/Leaves/Leaf_7.png" id="10_potkr"]
+[ext_resource type="Texture2D" uid="uid://clvs0qui5h738" path="res://Main Menu/Images/Leaves/Leaf_9.png" id="11_ix1qe"]
+[ext_resource type="Texture2D" uid="uid://kxr42317idm4" path="res://Main Menu/Images/Paper.png" id="12_wnbda"]
+[ext_resource type="Script" path="res://Main Menu/Start_Button.gd" id="14_ob1q4"]
+[ext_resource type="Script" path="res://Main Menu/Quit_Button.gd" id="15_b6jh0"]
+[ext_resource type="Script" path="res://Main Menu/Options_Button.gd" id="16_sbp3l"]
+[ext_resource type="FontFile" uid="uid://b1vh4s3p57eq3" path="res://Universal/dogica.otf" id="17_bk63m"]
+[ext_resource type="FontFile" uid="uid://7t1wddajvobl" path="res://Universal/alagard.ttf" id="18_ydqy1"]
+
+[sub_resource type="Animation" id="Animation_e0h0r"]
+resource_name = "Options_Button"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paper3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.174533, 0.0872665]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paper3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_8gvqo"]
+resource_name = "Quit_Button"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paper2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.4, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paper2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.20944, -0.122173]
+}
+
+[sub_resource type="Animation" id="Animation_satpb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paper1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.120428]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paper1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paper3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.174533]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paper3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paper2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.20944]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Paper2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cyan:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 900)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Magneta:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 900)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Yellow:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 900)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Black:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.20944]
+}
+
+[sub_resource type="Animation" id="Animation_juwtc"]
+resource_name = "Slide_Away"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyan:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Magneta:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Yellow:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Black:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n00fs"]
+resource_name = "Start_Button"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paper1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.120428, -0.0523599]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paper1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6sxk"]
+_data = {
+"Options_Button": SubResource("Animation_e0h0r"),
+"Quit_Button": SubResource("Animation_8gvqo"),
+"RESET": SubResource("Animation_satpb"),
+"Slide_Away": SubResource("Animation_juwtc"),
+"Start_Button": SubResource("Animation_n00fs")
+}
+
+[sub_resource type="Theme" id="Theme_ceclc"]
+default_font = ExtResource("17_bk63m")
+default_font_size = 75
+
+[sub_resource type="Theme" id="Theme_kwlmv"]
+default_font = ExtResource("17_bk63m")
+default_font_size = 80
+
+[sub_resource type="Theme" id="Theme_5y3vq"]
+default_font = ExtResource("17_bk63m")
+default_font_size = 80
+
+[sub_resource type="Theme" id="Theme_lc1an"]
+default_font = ExtResource("17_bk63m")
+default_font_size = 160
+
+[sub_resource type="Theme" id="Theme_rkmko"]
+default_font = ExtResource("17_bk63m")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_6m77g"]
+default_font = ExtResource("18_ydqy1")
+default_font_size = 120
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_v4f5b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0, 0.627451, 0.270588, 1)
+
+[node name="Gradient" type="Sprite2D" parent="."]
+position = Vector2(16, -97)
+scale = Vector2(2, 2)
+texture = ExtResource("1_uovyg")
+
+[node name="Pop 1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cqy76")
+
+[node name="Leaf 8" type="Sprite2D" parent="."]
+position = Vector2(1564, 199)
+rotation = 0.705113
+texture = ExtResource("3_fkiw2")
+
+[node name="Leaf 10" type="Sprite2D" parent="."]
+position = Vector2(1286, 134)
+rotation = -0.385718
+texture = ExtResource("3_fkiw2")
+
+[node name="Leaf 4" type="Sprite2D" parent="."]
+position = Vector2(1334, 93.9999)
+rotation = -0.846485
+texture = ExtResource("4_xpijm")
+
+[node name="Leaf 1" type="Sprite2D" parent="."]
+position = Vector2(784, 520)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_5u2y6")
+
+[node name="Leaf 11" type="Sprite2D" parent="."]
+position = Vector2(829, 744)
+rotation = 0.47822
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_5u2y6")
+
+[node name="Leaf 12" type="Sprite2D" parent="."]
+position = Vector2(367, 907)
+rotation = -0.479966
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_5u2y6")
+
+[node name="Leaf 2" type="Sprite2D" parent="."]
+position = Vector2(1529, 649)
+rotation = -0.424115
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_csy1o")
+
+[node name="Leaf 3" type="Sprite2D" parent="."]
+position = Vector2(213, 620)
+texture = ExtResource("7_ljfaq")
+
+[node name="Leaf 5" type="Sprite2D" parent="."]
+position = Vector2(54, 34.0001)
+rotation = 3.94968
+texture = ExtResource("8_x3gii")
+
+[node name="Leaf 13" type="Sprite2D" parent="."]
+position = Vector2(900, 49)
+rotation = 3.71057
+texture = ExtResource("8_x3gii")
+
+[node name="Leaf 14" type="Sprite2D" parent="."]
+position = Vector2(273, 947)
+texture = ExtResource("8_x3gii")
+
+[node name="Leaf 16" type="Sprite2D" parent="."]
+position = Vector2(1557, 445)
+rotation = -2.15374
+texture = ExtResource("8_x3gii")
+
+[node name="Leaf 6" type="Sprite2D" parent="."]
+position = Vector2(1400, 610)
+texture = ExtResource("9_i4hhm")
+
+[node name="Leaf 7" type="Sprite2D" parent="."]
+position = Vector2(69, 152)
+rotation = 2.25846
+texture = ExtResource("10_potkr")
+
+[node name="Leaf 9" type="Sprite2D" parent="."]
+position = Vector2(863, 841)
+rotation = -0.598648
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_ix1qe")
+
+[node name="Paper1" type="Sprite2D" parent="."]
+position = Vector2(491, 421)
+rotation = -0.120428
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("12_wnbda")
+script = ExtResource("14_ob1q4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper1"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_t6sxk")
+}
+
+[node name="Start" type="Label" parent="Paper1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -547.5
+offset_top = -203.0
+offset_right = -172.5
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ceclc")
+text = "Start"
+
+[node name="Paper2" type="Sprite2D" parent="."]
+position = Vector2(1252, 652)
+rotation = -0.20944
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_wnbda")
+script = ExtResource("15_b6jh0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper2"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_t6sxk")
+}
+
+[node name="Quit" type="Label" parent="Paper2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -447.5
+offset_top = -196.5
+offset_right = -272.5
+offset_bottom = -140.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_kwlmv")
+text = "Quit"
+
+[node name="Paper3" type="Sprite2D" parent="."]
+position = Vector2(1230, 432)
+rotation = 0.174533
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_wnbda")
+script = ExtResource("16_sbp3l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Paper3"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_t6sxk")
+}
+
+[node name="Options" type="Label" parent="Paper3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -510.0
+offset_top = -196.5
+offset_right = -210.0
+offset_bottom = -140.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5y3vq")
+text = "Options"
+
+[node name="S" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 59.0
+offset_right = 571.0
+offset_bottom = 167.0
+theme = SubResource("Theme_lc1an")
+text = "S"
+
+[node name="imulator" type="Label" parent="."]
+offset_left = 374.0
+offset_top = 63.0
+offset_right = 697.0
+offset_bottom = 136.0
+theme = SubResource("Theme_rkmko")
+text = "imulator"
+
+[node name="Bible" type="Label" parent="."]
+offset_left = 406.0
+offset_top = 126.0
+offset_right = 678.0
+offset_bottom = 242.0
+theme = SubResource("Theme_6m77g")
+text = "Bible"
+
+[node name="Start_Area" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Start_Area"]
+visible = false
+position = Vector2(491, 421)
+rotation = -0.120428
+scale = Vector2(0.6, 0.6)
+polygon = PackedVector2Array(98, -167.6, 104, -163.6, 104, -158.5, 105.3, -158.5, 125, -151.9, 125, -150.8, 154.6, -134.5, 155.6, -134.5, 157.6, -139.5, 160.3, -139.5, 165.3, -143.5, 168.3, -143.5, 180.2, -140.1, 184, -141.1, 184, -143, 180.8, -149.5, 184.1, -149.5, 203.2, -167.5, 245, -167.5, 245, -165.6, 261, -156.7, 261, -155.1, 270, -142.5, 270.8, -142.5, 335, -79.3, 335, -77, 335.2, -76.5, 336.8, -76.5, 348, -66.4, 348, -63.5, 349.6, -63.5, 360, -56.9, 360, 31.3, 343.1, 47.3, 346.5, 61.5, 348, 61.5, 360, 77.2, 360, 118.5, 354.9, 124.5, 352.5, 124.5, 339, 132.6, 339, 134.3, 329.8, 143.5, 326.8, 143.5, 324.8, 139.5, 322, 139.5, 308.5, 147.5, 304.8, 147.5, 301.7, 146.9, 284.4, 154.5, 276.1, 154.5, 258, 159, 258, 159.8, 256.4, 164.5, 253.8, 164.5, 245.6, 162.9, 235.5, 168.5, 233, 168.5, 233, 167.3, 215, 164.8, 215, 165.5, 209.8, 165.5, 206.8, 168.5, 199.6, 168.5, 196, 163.5, 193.5, 163.5, 187, 166.7, 187, 164, 167.9, 159.5, 162.3, 159.5, 148, 161.9, 148, 160.2, 137.7, 158.5, 135.3, 158.5, 119, 161.2, 111.7, 167.5, 108.2, 167.5, 106.3, 165.6, 101.7, 168.5, 80.1, 168.5, 71.5, 163.5, 66.8, 163.5, 53.7, 161.5, 40.7, 161.5, 35.7, 165.5, 28.1, 165.5, 26.1, 168.5, 2.60001, 168.5, -2.39999, 166.5, -6.79999, 166.5, -22.6, 168.5, -25, 168.5, -25, 167.1, -34, 165.1, -34, 163.2, -36, 160.5, -45.8, 160.5, -48.8, 157.5, -56.9, 157.5, -70, 161.1, -70, 158.6, -75.5, 155.5, -80.7, 155.5, -101, 158.9, -101, 157.4, -128, 155.4, -128, 154.2, -142, 151.1, -142, 149.6, -145.5, 147.5, -150.8, 147.5, -164, 148.7, -164, 146.6, -165.7, 145.5, -168, 145.5, -213, 146.5, -213, 147.3, -229.9, 149.5, -233.6, 149.5, -243.5, 143.5, -246.5, 143.5, -253.5, 147.5, -255.1, 147.5, -267, 146.3, -267, 144.5, -272.6, 140.5, -294, 140.5, -294, 138.6, -299.5, 135.5, -306.7, 135.5, -323, 137.8, -323, 135.2, -326, 131.5, -337.3, 131.5, -353, 127, -353, 125.1, -355.3, 121.6, -354.2, 119.5, -353, 119.5, -350.9, 117, -352.7, 105.5, -360, 98.3, -360, 68.7, -359.5, 66.3, -360, 65, -360, 53.7, -358.7, 46.5, -356.5, 46.5, -353.1, 44.5, -356.8, 33.5, -353.7, 33.5, -351, 31.5, -351, 29, -344.8, 16.6, -345.7, 12.5, -352, 6.3, -352, 2.5, -354, -4.2, -354, -5.60001, -352.2, -26.5, -355.4, -42.5, -353.4, -42.5, -345.5, -66.2, -352, -75.9, -352, -78.8, -348.6, -89.1, -357, -108.1, -357, -110.2, -354, -114.2, -354, -116.2, -355.4, -124.5, -352.8, -124.5, -352, -125.3, -352, -128.1, -356.9, -141.5, -353.5, -141.5, -351, -142.7, -354.3, -148.5, -353.2, -150.5, -351.9, -150.5, -346.9, -156.5, -341, -156.5, -341, -157.8, -340.8, -158.5, -345.2, -166.5, -342.1, -166.5, -341, -168.2, -209.9, -168.5, -199.8, -167.5, -195.2, -167.5, -186, -168.5, -175, -168.5, -136.8, -164.5, -127.5, -164.5, -120.9, -168.5, 98, -168.5)
+
+[node name="Quit_Area" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Quit_Area"]
+visible = false
+position = Vector2(1252, 652)
+rotation = -0.20944
+scale = Vector2(0.3, 0.3)
+polygon = PackedVector2Array(98, -167.6, 104, -163.6, 104, -158.5, 105.3, -158.5, 125, -151.9, 125, -150.8, 154.6, -134.5, 155.6, -134.5, 157.6, -139.5, 160.3, -139.5, 165.3, -143.5, 168.3, -143.5, 180.2, -140.1, 184, -141.1, 184, -143, 180.8, -149.5, 184.1, -149.5, 203.2, -167.5, 245, -167.5, 245, -165.6, 261, -156.7, 261, -155.1, 270, -142.5, 270.8, -142.5, 335, -79.3, 335, -77, 335.2, -76.5, 336.8, -76.5, 348, -66.4, 348, -63.5, 349.6, -63.5, 360, -56.9, 360, 31.3, 343.1, 47.3, 346.5, 61.5, 348, 61.5, 360, 77.2, 360, 118.5, 354.9, 124.5, 352.5, 124.5, 339, 132.6, 339, 134.3, 329.8, 143.5, 326.8, 143.5, 324.8, 139.5, 322, 139.5, 308.5, 147.5, 304.8, 147.5, 301.7, 146.9, 284.4, 154.5, 276.1, 154.5, 258, 159, 258, 159.8, 256.4, 164.5, 253.8, 164.5, 245.6, 162.9, 235.5, 168.5, 233, 168.5, 233, 167.3, 215, 164.8, 215, 165.5, 209.8, 165.5, 206.8, 168.5, 199.6, 168.5, 196, 163.5, 193.5, 163.5, 187, 166.7, 187, 164, 167.9, 159.5, 162.3, 159.5, 148, 161.9, 148, 160.2, 137.7, 158.5, 135.3, 158.5, 119, 161.2, 111.7, 167.5, 108.2, 167.5, 106.3, 165.6, 101.7, 168.5, 80.1, 168.5, 71.5, 163.5, 66.8, 163.5, 53.7, 161.5, 40.7, 161.5, 35.7, 165.5, 28.1, 165.5, 26.1, 168.5, 2.60001, 168.5, -2.39999, 166.5, -6.79999, 166.5, -22.6, 168.5, -25, 168.5, -25, 167.1, -34, 165.1, -34, 163.2, -36, 160.5, -45.8, 160.5, -48.8, 157.5, -56.9, 157.5, -70, 161.1, -70, 158.6, -75.5, 155.5, -80.7, 155.5, -101, 158.9, -101, 157.4, -128, 155.4, -128, 154.2, -142, 151.1, -142, 149.6, -145.5, 147.5, -150.8, 147.5, -164, 148.7, -164, 146.6, -165.7, 145.5, -168, 145.5, -213, 146.5, -213, 147.3, -229.9, 149.5, -233.6, 149.5, -243.5, 143.5, -246.5, 143.5, -253.5, 147.5, -255.1, 147.5, -267, 146.3, -267, 144.5, -272.6, 140.5, -294, 140.5, -294, 138.6, -299.5, 135.5, -306.7, 135.5, -323, 137.8, -323, 135.2, -326, 131.5, -337.3, 131.5, -353, 127, -353, 125.1, -355.3, 121.6, -354.2, 119.5, -353, 119.5, -350.9, 117, -352.7, 105.5, -360, 98.3, -360, 68.7, -359.5, 66.3, -360, 65, -360, 53.7, -358.7, 46.5, -356.5, 46.5, -353.1, 44.5, -356.8, 33.5, -353.7, 33.5, -351, 31.5, -351, 29, -344.8, 16.6, -345.7, 12.5, -352, 6.3, -352, 2.5, -354, -4.2, -354, -5.60001, -352.2, -26.5, -355.4, -42.5, -353.4, -42.5, -345.5, -66.2, -352, -75.9, -352, -78.8, -348.6, -89.1, -357, -108.1, -357, -110.2, -354, -114.2, -354, -116.2, -355.4, -124.5, -352.8, -124.5, -352, -125.3, -352, -128.1, -356.9, -141.5, -353.5, -141.5, -351, -142.7, -354.3, -148.5, -353.2, -150.5, -351.9, -150.5, -346.9, -156.5, -341, -156.5, -341, -157.8, -340.8, -158.5, -345.2, -166.5, -342.1, -166.5, -341, -168.2, -209.9, -168.5, -199.8, -167.5, -195.2, -167.5, -186, -168.5, -175, -168.5, -136.8, -164.5, -127.5, -164.5, -120.9, -168.5, 98, -168.5)
+
+[node name="Options_Area" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Options_Area"]
+visible = false
+position = Vector2(1230, 432)
+rotation = 0.174533
+scale = Vector2(0.4, 0.4)
+polygon = PackedVector2Array(98, -167.6, 104, -163.6, 104, -158.5, 105.3, -158.5, 125, -151.9, 125, -150.8, 154.6, -134.5, 155.6, -134.5, 157.6, -139.5, 160.3, -139.5, 165.3, -143.5, 168.3, -143.5, 180.2, -140.1, 184, -141.1, 184, -143, 180.8, -149.5, 184.1, -149.5, 203.2, -167.5, 245, -167.5, 245, -165.6, 261, -156.7, 261, -155.1, 270, -142.5, 270.8, -142.5, 335, -79.3, 335, -77, 335.2, -76.5, 336.8, -76.5, 348, -66.4, 348, -63.5, 349.6, -63.5, 360, -56.9, 360, 31.3, 343.1, 47.3, 346.5, 61.5, 348, 61.5, 360, 77.2, 360, 118.5, 354.9, 124.5, 352.5, 124.5, 339, 132.6, 339, 134.3, 329.8, 143.5, 326.8, 143.5, 324.8, 139.5, 322, 139.5, 308.5, 147.5, 304.8, 147.5, 301.7, 146.9, 284.4, 154.5, 276.1, 154.5, 258, 159, 258, 159.8, 256.4, 164.5, 253.8, 164.5, 245.6, 162.9, 235.5, 168.5, 233, 168.5, 233, 167.3, 215, 164.8, 215, 165.5, 209.8, 165.5, 206.8, 168.5, 199.6, 168.5, 196, 163.5, 193.5, 163.5, 187, 166.7, 187, 164, 167.9, 159.5, 162.3, 159.5, 148, 161.9, 148, 160.2, 137.7, 158.5, 135.3, 158.5, 119, 161.2, 111.7, 167.5, 108.2, 167.5, 106.3, 165.6, 101.7, 168.5, 80.1, 168.5, 71.5, 163.5, 66.8, 163.5, 53.7, 161.5, 40.7, 161.5, 35.7, 165.5, 28.1, 165.5, 26.1, 168.5, 2.60001, 168.5, -2.39999, 166.5, -6.79999, 166.5, -22.6, 168.5, -25, 168.5, -25, 167.1, -34, 165.1, -34, 163.2, -36, 160.5, -45.8, 160.5, -48.8, 157.5, -56.9, 157.5, -70, 161.1, -70, 158.6, -75.5, 155.5, -80.7, 155.5, -101, 158.9, -101, 157.4, -128, 155.4, -128, 154.2, -142, 151.1, -142, 149.6, -145.5, 147.5, -150.8, 147.5, -164, 148.7, -164, 146.6, -165.7, 145.5, -168, 145.5, -213, 146.5, -213, 147.3, -229.9, 149.5, -233.6, 149.5, -243.5, 143.5, -246.5, 143.5, -253.5, 147.5, -255.1, 147.5, -267, 146.3, -267, 144.5, -272.6, 140.5, -294, 140.5, -294, 138.6, -299.5, 135.5, -306.7, 135.5, -323, 137.8, -323, 135.2, -326, 131.5, -337.3, 131.5, -353, 127, -353, 125.1, -355.3, 121.6, -354.2, 119.5, -353, 119.5, -350.9, 117, -352.7, 105.5, -360, 98.3, -360, 68.7, -359.5, 66.3, -360, 65, -360, 53.7, -358.7, 46.5, -356.5, 46.5, -353.1, 44.5, -356.8, 33.5, -353.7, 33.5, -351, 31.5, -351, 29, -344.8, 16.6, -345.7, 12.5, -352, 6.3, -352, 2.5, -354, -4.2, -354, -5.60001, -352.2, -26.5, -355.4, -42.5, -353.4, -42.5, -345.5, -66.2, -352, -75.9, -352, -78.8, -348.6, -89.1, -357, -108.1, -357, -110.2, -354, -114.2, -354, -116.2, -355.4, -124.5, -352.8, -124.5, -352, -125.3, -352, -128.1, -356.9, -141.5, -353.5, -141.5, -351, -142.7, -354.3, -148.5, -353.2, -150.5, -351.9, -150.5, -346.9, -156.5, -341, -156.5, -341, -157.8, -340.8, -158.5, -345.2, -166.5, -342.1, -166.5, -341, -168.2, -209.9, -168.5, -199.8, -167.5, -195.2, -167.5, -186, -168.5, -175, -168.5, -136.8, -164.5, -127.5, -164.5, -120.9, -168.5, 98, -168.5)
+
+[node name="Cyan" type="ColorRect" parent="."]
+offset_top = 900.0
+offset_right = 1600.0
+offset_bottom = 1800.0
+color = Color(0, 0.576471, 0.827451, 1)
+
+[node name="Magneta" type="ColorRect" parent="."]
+offset_top = 900.0
+offset_right = 1600.0
+offset_bottom = 1800.0
+color = Color(0.8, 0.00392157, 0.419608, 1)
+
+[node name="Yellow" type="ColorRect" parent="."]
+offset_top = 900.0
+offset_right = 1600.0
+offset_bottom = 1800.0
+color = Color(1, 0.945098, 0.0509804, 1)
+
+[node name="Black" type="ColorRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="mouse_entered" from="Start_Area" to="Paper1" method="_on_start_area_mouse_entered"]
+[connection signal="mouse_exited" from="Start_Area" to="Paper1" method="_on_start_area_mouse_exited"]
+[connection signal="mouse_entered" from="Quit_Area" to="Paper2" method="_on_quit_area_mouse_entered"]
+[connection signal="mouse_exited" from="Quit_Area" to="Paper2" method="_on_quit_area_mouse_exited"]
+[connection signal="mouse_entered" from="Options_Area" to="Paper3" method="_on_options_area_mouse_entered"]
+[connection signal="mouse_exited" from="Options_Area" to="Paper3" method="_on_options_area_mouse_exited"]

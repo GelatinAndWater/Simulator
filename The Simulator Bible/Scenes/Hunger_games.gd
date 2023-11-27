@@ -260,16 +260,17 @@ func SimulateSeperation():
 					elif SimulateSeperationVar == 4:
 						#Violence Event 💥
 						ViolenceEvent()
-			if CharactersToSimulate == 1:
+			if SimulateEventAmount == 1:
 				listOfNumbersTemp.erase(TempCharacter1)
-			elif CharactersToSimulate == 2:
+			elif SimulateEventAmount == 2:
 				listOfNumbersTemp.erase(TempCharacter1)
 				listOfNumbersTemp.erase(TempCharacter2)
-			elif CharactersToSimulate == 3:
+			elif SimulateEventAmount == 3:
 				listOfNumbersTemp.erase(TempCharacter1)
 				listOfNumbersTemp.erase(TempCharacter2)
 				listOfNumbersTemp.erase(TempCharacter3)
 			CharactersToSimulate -= SimulateEventAmount
+			print(listOfNumbersTemp)
 
 #First Event🩸
 func BloodBath():
