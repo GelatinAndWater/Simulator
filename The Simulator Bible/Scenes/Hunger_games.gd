@@ -183,10 +183,13 @@ func _on_line_edit_text_submitted(new_text):
 	listOfNumbersTemp = listOfNumbers.duplicate()
 	print("Lets Go")
 	
-	#Actually Starting this
+	#Actually Starting this 
 	var input_response = InputResponse.instantiate()
 	Response = "------------------------------------------------------------------------------------------"
-	
+
+	#Int tax 💢
+	#HungerRemoverFunction
+
 	#For the title
 	if Day == 0:
 		Response += "\nThe Blood Bath\n"
@@ -680,43 +683,47 @@ func BloodBath():
 				listOfNumbersTemp.erase(TempCharacter3)
 			CharactersToSimulate -= SimulateEventAmount
 
-#Health Event
+#Health Event ⚕️
 func HealthEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Health")
 		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " uses some medical equipment successfully"
+			BruteForceVariableChanger(TempCharacter1, "Health",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks the medical equipment while trying to treat a wound"
 
-#Hunger Event
+#Hunger Event 🤤
 func HungerEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Hunger")
 		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " eats some food"
+			BruteForceVariableChanger(TempCharacter1, "Hunger",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " drops their food in some mud"
 
-#Sanity Event
+#Sanity Event 🧘
 func SanityEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Sanity")
 		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " meditates with the birds"
+			BruteForceVariableChanger(TempCharacter1, "Sanity",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " could not find their inner peace"
 
-#Might Event
+#Might Event 💪
 func MightEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Might")
 		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " works out by lifting logs"
+			BruteForceVariableChanger(TempCharacter1, "Might",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " hurts themselves while working out"
 
