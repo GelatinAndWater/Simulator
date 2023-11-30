@@ -188,8 +188,9 @@ func _on_line_edit_text_submitted(new_text):
 	Response = "------------------------------------------------------------------------------------------"
 
 	#Int tax 💢
-	#HungerRemoverFunction
-
+	HungerRemoverFunction()
+	FurtherEffects()
+	
 	#For the title
 	if Day == 0:
 		Response += "\nThe Blood Bath\n"
@@ -688,7 +689,7 @@ func HealthEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Health")
-		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " uses some medical equipment successfully"
 			BruteForceVariableChanger(TempCharacter1, "Health",2)
 		else:
@@ -699,7 +700,7 @@ func HungerEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Hunger")
-		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " eats some food"
 			BruteForceVariableChanger(TempCharacter1, "Hunger",2)
 		else:
@@ -710,7 +711,7 @@ func SanityEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Sanity")
-		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " meditates with the birds"
 			BruteForceVariableChanger(TempCharacter1, "Sanity",2)
 		else:
@@ -721,7 +722,7 @@ func MightEvent():
 	if SimulateEventAmount == 1:
 		SimulateRandomNumber = rng.randi_range(1,2)
 		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Might")
-		if rng.randf_range(0,1) <= (-(VarCheckerTemp1/10)^2 + 1):
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " works out by lifting logs"
 			BruteForceVariableChanger(TempCharacter1, "Might",2)
 		else:
@@ -1077,6 +1078,42 @@ func ViolenceEvent():
 		elif SimulateRandomNumber == 10:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " stupidly falls off a cliff"
 			listOfNumbers.erase(TempCharacter1)
+	elif SimulateEventAmount == 2:
+		VarCheckerTemp2 = false
+		Response += "\n" + "====="
+		while VarCheckerTemp2:
+			
+			#Player 1 fighting 👊
+			
+			if BruteForceVariableGetter(TempCharacter2,"Health") < 5:
+				if BruteForceArrayGetter(TempCharacter1, "Enemies").has(TempCharacter2):
+					if BruteForceArrayGetter(TempCharacter1, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter1, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter1, "Belongings").count("Bow") != 0 :
+						BattleForMe(1,"Weapon")
+					else:
+						BattleForMe(1,"Raw")
+				else:
+					BattleForMe(1,"Raw")
+			else:
+				if BruteForceArrayGetter(TempCharacter1, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter1, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter1, "Belongings").count("Bow") != 0 :
+					BattleForMe(1,"Weapon")
+				else:
+					BattleForMe(1,"Raw")
+			
+			#Player 2 fighting 👊
+			
+			if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
+				if BruteForceArrayGetter(TempCharacter2, "Enemies").has(TempCharacter1):
+					if BruteForceArrayGetter(TempCharacter2, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Bow") != 0 :
+						BattleForMe(2,"Weapon")
+					else:
+						BattleForMe(2,"Raw")
+				else:
+					BattleForMe(2,"Raw")
+			else:
+				if BruteForceArrayGetter(TempCharacter2, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Bow") != 0 :
+					BattleForMe(2,"Weapon")
+				else:
+					BattleForMe(2,"Raw")
 
 #Change Vars within characters 🤫
 func BruteForceVariableChanger(Character, Element, Change):
@@ -1539,3 +1576,191 @@ func BruteForceArrayGetter(Character, Element):
 			return Character10_Friends
 		elif Element == "Enemies":
 			return Character10_Enemies
+
+func BattleForMe(Who:int, Type:String):
+	if Who == 1:
+		if Type == "Raw":
+			SimulateRandomNumber = rng.randi_range(1,10)
+			if SimulateRandomNumber == 1:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " punches " + listOfCharacterNames[TempCharacter2]
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 2:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " kicks " + listOfCharacterNames[TempCharacter2]
+				BruteForceVariableChanger(TempCharacter2,"Health",-1)
+			elif SimulateRandomNumber == 3:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " knocks " + listOfCharacterNames[TempCharacter2] + " to the ground"
+				BruteForceVariableChanger(TempCharacter2,"Health",-1)
+			elif SimulateRandomNumber == 4:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " upper cuts " + listOfCharacterNames[TempCharacter2]
+				BruteForceVariableChanger(TempCharacter2,"Health",-3)
+			elif SimulateRandomNumber == 5:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks " + listOfCharacterNames[TempCharacter2] + "'s nose"
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 6:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " crushes " + listOfCharacterNames[TempCharacter2] + "'s ankle"
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 7:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " slaps " + listOfCharacterNames[TempCharacter2] + "'s face"
+				BruteForceVariableChanger(TempCharacter2,"Health",-1)
+			elif SimulateRandomNumber == 8:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " snaps " + listOfCharacterNames[TempCharacter2] + "'s ribs"
+				BruteForceVariableChanger(TempCharacter2,"Health",-3)
+			elif SimulateRandomNumber == 9:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " headbutts " + listOfCharacterNames[TempCharacter2]
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 10:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " slams down their fist on " + listOfCharacterNames[TempCharacter2] + "'s head"
+				BruteForceVariableChanger(TempCharacter2,"Health",-1)
+		elif Type == "Weapon":
+			SimulateRandomNumber = rng.randi_range(1,2)
+			if BruteForceArrayGetter(TempCharacter1, "Belongings").has("Sword"):
+				BruteForceArrayChanger(TempCharacter1, "Sword", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " stabs " + listOfCharacterNames[TempCharacter2] + " with their sword"
+					BruteForceVariableChanger(TempCharacter2,"Health",-5)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " slashes" + listOfCharacterNames[TempCharacter2] + " with their sword"
+					BruteForceVariableChanger(TempCharacter2,"Health",-4)
+			elif BruteForceArrayGetter(TempCharacter1, "Belongings").has("Melee"):
+				BruteForceArrayChanger(TempCharacter1, "Melee", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " clubs " + listOfCharacterNames[TempCharacter2] + " with their melee weapon"
+					BruteForceVariableChanger(TempCharacter2,"Health",-4)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " bonks " + listOfCharacterNames[TempCharacter2] + " with their melee weapon"
+					BruteForceVariableChanger(TempCharacter2,"Health",-3)
+			elif BruteForceArrayGetter(TempCharacter1, "Belongings").has("Bow"):
+				BruteForceArrayChanger(TempCharacter1, "Bow", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " shoots " + listOfCharacterNames[TempCharacter2] + " with their bow"
+					BruteForceVariableChanger(TempCharacter2,"Health",-5)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " hurls an arrow at" + listOfCharacterNames[TempCharacter2] + " with their bow"
+					BruteForceVariableChanger(TempCharacter2,"Health",-4)
+	elif Who == 2:
+		if Type == "Raw":
+			SimulateRandomNumber = rng.randi_range(1,10)
+			if SimulateRandomNumber == 1:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " punches " + listOfCharacterNames[TempCharacter1]
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 2:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " kicks " + listOfCharacterNames[TempCharacter1]
+				BruteForceVariableChanger(TempCharacter1,"Health",-1)
+			elif SimulateRandomNumber == 3:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " knocks " + listOfCharacterNames[TempCharacter1] + " to the ground"
+				BruteForceVariableChanger(TempCharacter1,"Health",-1)
+			elif SimulateRandomNumber == 4:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " upper cuts " + listOfCharacterNames[TempCharacter1]
+				BruteForceVariableChanger(TempCharacter1,"Health",-3)
+			elif SimulateRandomNumber == 5:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " breaks " + listOfCharacterNames[TempCharacter1] + "'s nose"
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 6:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " crushes " + listOfCharacterNames[TempCharacter1] + "'s ankle"
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 7:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " slaps " + listOfCharacterNames[TempCharacter1] + "'s face"
+				BruteForceVariableChanger(TempCharacter1,"Health",-1)
+			elif SimulateRandomNumber == 8:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " snaps " + listOfCharacterNames[TempCharacter1] + "'s ribs"
+				BruteForceVariableChanger(TempCharacter1,"Health",-3)
+			elif SimulateRandomNumber == 9:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " headbutts " + listOfCharacterNames[TempCharacter1]
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 10:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " slams down their fist on " + listOfCharacterNames[TempCharacter1] + "'s head"
+				BruteForceVariableChanger(TempCharacter1,"Health",-1)
+		elif Type == "Weapon":
+			SimulateRandomNumber = rng.randi_range(1,2)
+			if BruteForceArrayGetter(TempCharacter2, "Belongings").has("Sword"):
+				BruteForceArrayChanger(TempCharacter2, "Sword", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " stabs " + listOfCharacterNames[TempCharacter1] + " with their sword"
+					BruteForceVariableChanger(TempCharacter1,"Health",-5)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " slashes" + listOfCharacterNames[TempCharacter1] + " with their sword"
+					BruteForceVariableChanger(TempCharacter1,"Health",-4)
+			elif BruteForceArrayGetter(TempCharacter2, "Belongings").has("Melee"):
+				BruteForceArrayChanger(TempCharacter2, "Melee", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " clubs " + listOfCharacterNames[TempCharacter1] + " with their melee weapon"
+					BruteForceVariableChanger(TempCharacter1,"Health",-4)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " bonks " + listOfCharacterNames[TempCharacter1] + " with their melee weapon"
+					BruteForceVariableChanger(TempCharacter1,"Health",-3)
+			elif BruteForceArrayGetter(TempCharacter2, "Belongings").has("Bow"):
+				BruteForceArrayChanger(TempCharacter2, "Bow", "Subtract", "Belongings")
+				if SimulateRandomNumber == 1:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " shoots " + listOfCharacterNames[TempCharacter1] + " with their bow"
+					BruteForceVariableChanger(TempCharacter1,"Health",-5)
+				elif SimulateRandomNumber == 2:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " hurls an arrow at" + listOfCharacterNames[TempCharacter1] + " with their bow"
+					BruteForceVariableChanger(TempCharacter1,"Health",-4)
+
+func HungerRemoverFunction():
+	BruteForceVariableChanger(0,"Hunger",-1)
+	BruteForceVariableChanger(1,"Hunger",-1)
+	BruteForceVariableChanger(2,"Hunger",-1)
+	BruteForceVariableChanger(3,"Hunger",-1)
+	BruteForceVariableChanger(4,"Hunger",-1)
+	BruteForceVariableChanger(5,"Hunger",-1)
+	BruteForceVariableChanger(6,"Hunger",-1)
+	BruteForceVariableChanger(7,"Hunger",-1)
+	BruteForceVariableChanger(8,"Hunger",-1)
+	BruteForceVariableChanger(9,"Hunger",-1)
+
+func FurtherEffects():
+	
+	#Starvation🍽
+	if BruteForceVariableGetter(0,"Hunger") == 0:
+		BruteForceVariableChanger(0,"Health",-1)
+	if BruteForceVariableGetter(1,"Hunger") == 0:
+		BruteForceVariableChanger(1,"Health",-1)
+	if BruteForceVariableGetter(2,"Hunger") == 0:
+		BruteForceVariableChanger(2,"Health",-1)
+	if BruteForceVariableGetter(3,"Hunger") == 0:
+		BruteForceVariableChanger(3,"Health",-1)
+	if BruteForceVariableGetter(4,"Hunger") == 0:
+		BruteForceVariableChanger(4,"Health",-1)
+	if BruteForceVariableGetter(5,"Hunger") == 0:
+		BruteForceVariableChanger(5,"Health",-1)
+	if BruteForceVariableGetter(6,"Hunger") == 0:
+		BruteForceVariableChanger(6,"Health",-1)
+	if BruteForceVariableGetter(7,"Hunger") == 0:
+		BruteForceVariableChanger(7,"Health",-1)
+	if BruteForceVariableGetter(8,"Hunger") == 0:
+		BruteForceVariableChanger(8,"Health",-1)
+	if BruteForceVariableGetter(9,"Hunger") == 0:
+		BruteForceVariableChanger(9,"Health",-1)
+	
+	#Doubts 🤨
+	if BruteForceVariableGetter(0,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(0,"Might",-1)
+	if BruteForceVariableGetter(1,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(1,"Might",-1)
+	if BruteForceVariableGetter(2,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(2,"Might",-1)
+	if BruteForceVariableGetter(3,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(3,"Might",-1)
+	if BruteForceVariableGetter(4,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(4,"Might",-1)
+	if BruteForceVariableGetter(5,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(5,"Might",-1)
+	if BruteForceVariableGetter(6,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(6,"Might",-1)
+	if BruteForceVariableGetter(7,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(7,"Might",-1)
+	if BruteForceVariableGetter(8,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(8,"Might",-1)
+	if BruteForceVariableGetter(9,"Sanity") == 0:
+		if rng.randi_range(0,1) == 1:
+			BruteForceVariableChanger(9,"Might",-1)
