@@ -130,7 +130,7 @@ var listOfCharacterNames = []
 var Day = 0
 var Night = false
 var listOfNumbers = [0,1,2,3,4,5,6,7,8,9]
-var listOfNumbersSimulateEventAmount = [1,1,1,1,1,1]
+var listOfNumbersSimulateEventAmount = [1,1,1,1,1,1,2,2,2]
 
 #Temp Varaibles ♻️
 var time
@@ -185,7 +185,7 @@ func _on_line_edit_text_submitted(new_text):
 	
 	#Actually Starting this 
 	var input_response = InputResponse.instantiate()
-	Response = "------------------------------------------------------------------------------------------"
+	Response = "------------------------------------------------------------------------------"
 
 	#Int tax 💢
 	HungerRemoverFunction()
@@ -195,11 +195,12 @@ func _on_line_edit_text_submitted(new_text):
 	if Day == 0:
 		Response += "\nThe Blood Bath\n"
 		BloodBath()
-	elif listOfNumbers.size() == 2:
-		Response += "\nThe Finale\n"
+	#elif listOfNumbers.size() == 2:
+	#	Response += "\nThe Finale\n"
 	else:
 		Response +="\nDay - " + str(Day) + " |  Time - " + time + "\n"
 		SimulateSeperation()
+		DeathChecker()
 	
 	#Finish all of it off
 	input_response.set_text(new_text, Response)
@@ -213,8 +214,8 @@ func SimulateSeperation():
 		if SimulateEventAmount > CharactersToSimulate:
 			pass
 		else:
-			TempCharacter1 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
-			if rng.randi_range(2,3) == 1:
+			TempCharacter1 = listOfNumbersTemp.pick_random()
+			if rng.randi_range(1,3) == 1 :
 				if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
 					#Health Event ⚕️
 					HealthEvent()
@@ -228,29 +229,38 @@ func SimulateSeperation():
 					#Might Event 💪
 					MightEvent()
 				else:
-					SimulateSeperationVar = rng.randi_range(1,4)
-					#Fixing some logic
-					if SimulateSeperationVar == 3 && SimulateEventAmount == 1:
-						SimulateSeperationVar = 1
-					
-					if SimulateSeperationVar == 1:
-						#Boring Event 🥱
-						DescriptiveEvent()
-					elif SimulateSeperationVar == 2:
-						#Trading Event 🤝
-						TradingEvent()
-					elif SimulateSeperationVar == 3:
-						#Communication Event 📞
-						CommunicationEvent()
-					elif SimulateSeperationVar == 4:
-						#Violence Event 💥
-						ViolenceEvent()
+					if Night == false:
+						SimulateSeperationVar = rng.randi_range(1,4)
+						#Fixing some logic
+						if SimulateSeperationVar == 3 && SimulateEventAmount == 1:
+							SimulateSeperationVar = 1
+						if SimulateSeperationVar == 2 && SimulateEventAmount == 2:
+							SimulateEventAmount = 1
+						if SimulateSeperationVar == 1 && SimulateEventAmount == 2:
+							SimulateEventAmount = 1
+						
+						if SimulateSeperationVar == 1:
+							#Boring Event 🥱
+							DescriptiveEvent()
+						elif SimulateSeperationVar == 2:
+							#Trading Event 🤝
+							TradingEvent()
+						elif SimulateSeperationVar == 3:
+							#Communication Event 📞
+							CommunicationEvent()
+						elif SimulateSeperationVar == 4:
+							#Violence Event 💥
+							ViolenceEvent()
 			else:
 				if Night == false:
 					SimulateSeperationVar = rng.randi_range(1,4)
 					#Fixing some logic
 					if SimulateSeperationVar == 3 && SimulateEventAmount == 1:
 						SimulateSeperationVar = 1
+					if SimulateSeperationVar == 2 && SimulateEventAmount == 2:
+						SimulateEventAmount = 1
+					if SimulateSeperationVar == 1 && SimulateEventAmount == 2:
+						SimulateEventAmount = 1
 					
 					if SimulateSeperationVar == 1:
 						#Boring Event 🥱
@@ -275,6 +285,7 @@ func SimulateSeperation():
 				listOfNumbersTemp.erase(TempCharacter3)
 			CharactersToSimulate -= SimulateEventAmount
 			print(listOfNumbersTemp)
+			print(CharactersToSimulate)
 
 #First Event🩸
 func BloodBath():
@@ -694,6 +705,17 @@ func HealthEvent():
 			BruteForceVariableChanger(TempCharacter1, "Health",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " breaks the medical equipment while trying to treat a wound"
+	elif SimulateEventAmount == 2:
+		TempCharacter2 = listOfNumbersTemp.pick_random()
+		while TempCharacter2 == TempCharacter1:
+			TempCharacter2 = listOfNumbersTemp.pick_random()
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Health")
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets help with some medical equipment by " + listOfCharacterNames[TempCharacter2]
+			BruteForceVariableChanger(TempCharacter1, "Health",2)
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + "'s injury gets worse when " + listOfCharacterNames[TempCharacter2] + " tries to help "
 
 #Hunger Event 🤤
 func HungerEvent():
@@ -705,6 +727,17 @@ func HungerEvent():
 			BruteForceVariableChanger(TempCharacter1, "Hunger",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " drops their food in some mud"
+	elif SimulateEventAmount == 2:
+		TempCharacter2 = listOfNumbersTemp.pick_random()
+		while TempCharacter2 == TempCharacter1:
+			TempCharacter2 = listOfNumbersTemp.pick_random()
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Hunger")
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " gets fed by " + listOfCharacterNames[TempCharacter2]
+			BruteForceVariableChanger(TempCharacter1, "Hunger",2)
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " loses their food after " + listOfCharacterNames[TempCharacter2] + " carries it"
 
 #Sanity Event 🧘
 func SanityEvent():
@@ -716,6 +749,17 @@ func SanityEvent():
 			BruteForceVariableChanger(TempCharacter1, "Sanity",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " could not find their inner peace"
+	elif SimulateEventAmount == 2:
+		TempCharacter2 = listOfNumbersTemp.pick_random()
+		while TempCharacter2 == TempCharacter1:
+			TempCharacter2 = listOfNumbersTemp.pick_random()
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Sanity")
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " meditates with " + listOfCharacterNames[TempCharacter2]
+			BruteForceVariableChanger(TempCharacter1, "Sanity",2)
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " could not find their inner peace with " + listOfCharacterNames[TempCharacter2]
 
 #Might Event 💪
 func MightEvent():
@@ -727,6 +771,17 @@ func MightEvent():
 			BruteForceVariableChanger(TempCharacter1, "Might",2)
 		else:
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " hurts themselves while working out"
+	elif SimulateEventAmount == 2:
+		TempCharacter2 = listOfNumbersTemp.pick_random()
+		while TempCharacter2 == TempCharacter1:
+			TempCharacter2 = listOfNumbersTemp.pick_random()
+		SimulateRandomNumber = rng.randi_range(1,2)
+		VarCheckerTemp1 = BruteForceVariableGetter(TempCharacter1,"Might")
+		if rng.randf_range(0,1) <= ((VarCheckerTemp1/10)-1)^2:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " does some exercise with " + listOfCharacterNames[TempCharacter2]
+			BruteForceVariableChanger(TempCharacter1, "Might",2)
+		else:
+			Response += "\n" + listOfCharacterNames[TempCharacter1] + " hgest distracted while working out with " + listOfCharacterNames[TempCharacter2]
 
 #Boring Event 🥱
 func DescriptiveEvent():
@@ -887,6 +942,8 @@ func DescriptiveEvent():
 			elif SimulateRandomNumber == 25:
 				Response += "\n" + listOfCharacterNames[TempCharacter1] + " climbs trees to find people desperately"
 		listOfNumbersTemp.erase(TempCharacter1)
+	elif SimulateEventAmount == 2:
+		pass
 
 #Trading Event 🤝
 func TradingEvent():
@@ -977,6 +1034,9 @@ func CommunicationEvent():
 				SimulateRandomNumber = rng.randi_range(1,5)
 				
 				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				while TempCharacter2 == TempCharacter1:
+					TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+					
 				if SimulateRandomNumber == 1:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " gives a wild flower as a gift to " + listOfCharacterNames[TempCharacter2]
 					BruteForceArrayChanger(TempCharacter2, TempCharacter1, "Add", "Friends")
@@ -1025,7 +1085,10 @@ func CommunicationEvent():
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " tells " + listOfCharacterNames[TempCharacter2] + " to jump and die"
 			else:
 				SimulateRandomNumber = rng.randi_range(1,5)
+				
 				TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
+				while TempCharacter2 == TempCharacter1:
+					TempCharacter2 = listOfNumbersTemp[rng.randi_range(0,(CharactersToSimulate-1))]
 				
 				if SimulateRandomNumber == 1:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " refuses to befriend " + listOfCharacterNames[TempCharacter2]
@@ -1079,7 +1142,7 @@ func ViolenceEvent():
 			Response += "\n" + listOfCharacterNames[TempCharacter1] + " stupidly falls off a cliff"
 			listOfNumbers.erase(TempCharacter1)
 	elif SimulateEventAmount == 2:
-		VarCheckerTemp2 = false
+		VarCheckerTemp2 = true
 		Response += "\n" + "====="
 		while VarCheckerTemp2:
 			
@@ -1099,21 +1162,38 @@ func ViolenceEvent():
 				else:
 					BattleForMe(1,"Raw")
 			
+			if BruteForceVariableGetter(TempCharacter2, "Health") < 0:
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " dies"
+				listOfNumbers.erase(TempCharacter2)
+				VarCheckerTemp2 = false
+			elif ((BruteForceVariableGetter(TempCharacter2,"Health") / 11) - (10/11))^2 < rng.randf_range(0,1):
+				Response += "\n" + listOfCharacterNames[TempCharacter2] + " runs away from the fight"
+				VarCheckerTemp2 = false
 			#Player 2 fighting 👊
 			
-			if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
-				if BruteForceArrayGetter(TempCharacter2, "Enemies").has(TempCharacter1):
+			if VarCheckerTemp2:
+				if BruteForceVariableGetter(TempCharacter1,"Health") < 5:
+					if BruteForceArrayGetter(TempCharacter2, "Enemies").has(TempCharacter1):
+						if BruteForceArrayGetter(TempCharacter2, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Bow") != 0 :
+							BattleForMe(2,"Weapon")
+						else:
+							BattleForMe(2,"Raw")
+					else:
+						BattleForMe(2,"Raw")
+				else:
 					if BruteForceArrayGetter(TempCharacter2, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Bow") != 0 :
 						BattleForMe(2,"Weapon")
 					else:
 						BattleForMe(2,"Raw")
-				else:
-					BattleForMe(2,"Raw")
-			else:
-				if BruteForceArrayGetter(TempCharacter2, "Belongings").count("Melee") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Sword") != 0 || BruteForceArrayGetter(TempCharacter2, "Belongings").count("Bow") != 0 :
-					BattleForMe(2,"Weapon")
-				else:
-					BattleForMe(2,"Raw")
+				
+				if BruteForceVariableGetter(TempCharacter1, "Health") < 0:
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dies"
+					listOfNumbers.erase(TempCharacter2)
+					VarCheckerTemp2 = false
+				elif ((BruteForceVariableGetter(TempCharacter1,"Health") / 11) - (10/11))^2 < rng.randf_range(0,1):
+					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away from the fight"
+					VarCheckerTemp2 = false
+		Response += "\n" + "====="
 
 #Change Vars within characters 🤫
 func BruteForceVariableChanger(Character, Element, Change):
@@ -1422,6 +1502,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character1_Might
 		elif Element == "Kills":
 			return Character1_Kills
+		elif Element == "Hunger":
+			return Character1_Hunger
 	elif Character == 1:
 		if Element == "Health":
 			return Character2_Health
@@ -1431,6 +1513,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character2_Might
 		elif Element == "Kills":
 			return Character2_Kills
+		elif Element == "Hunger":
+			return Character2_Hunger
 	elif Character == 2:
 		if Element == "Health":
 			return Character3_Health
@@ -1440,6 +1524,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character3_Might
 		elif Element == "Kills":
 			return Character3_Kills
+		elif Element == "Hunger":
+			return Character3_Hunger
 	elif Character == 3:
 		if Element == "Health":
 			return Character4_Health
@@ -1449,6 +1535,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character4_Might
 		elif Element == "Kills":
 			return Character4_Kills
+		elif Element == "Hunger":
+			return Character4_Hunger
 	elif Character == 4:
 		if Element == "Health":
 			return Character5_Health
@@ -1458,6 +1546,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character5_Might
 		elif Element == "Kills":
 			return Character5_Kills
+		elif Element == "Hunger":
+			return Character5_Hunger
 	elif Character == 5:
 		if Element == "Health":
 			return Character6_Health
@@ -1467,6 +1557,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character6_Might
 		elif Element == "Kills":
 			return Character6_Kills
+		elif Element == "Hunger":
+			return Character6_Hunger
 	elif Character == 6:
 		if Element == "Health":
 			return Character7_Health
@@ -1476,6 +1568,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character7_Might
 		elif Element == "Kills":
 			return Character7_Kills
+		elif Element == "Hunger":
+			return Character7_Hunger
 	elif Character == 7:
 		if Element == "Health":
 			return Character8_Health
@@ -1485,6 +1579,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character8_Might
 		elif Element == "Kills":
 			return Character8_Kills
+		elif Element == "Hunger":
+			return Character8_Hunger
 	elif Character == 8:
 		if Element == "Health":
 			return Character9_Health
@@ -1494,6 +1590,8 @@ func BruteForceVariableGetter(Character, Element):
 			return Character9_Might
 		elif Element == "Kills":
 			return Character9_Kills
+		elif Element == "Hunger":
+			return Character9_Hunger
 	elif Character == 9:
 		if Element == "Health":
 			return Character10_Health
@@ -1503,8 +1601,10 @@ func BruteForceVariableGetter(Character, Element):
 			return Character10_Might
 		elif Element == "Kills":
 			return Character10_Kills
+		elif Element == "Hunger":
+			return Character10_Hunger
 
-#Gets Arrays within characetrs 🤫
+#Gets Arrays within characters 🤫
 func BruteForceArrayGetter(Character, Element):
 	if Character == 0:
 		if Element == "Belongings":
@@ -1577,6 +1677,7 @@ func BruteForceArrayGetter(Character, Element):
 		elif Element == "Enemies":
 			return Character10_Enemies
 
+#Battle Responses 💥
 func BattleForMe(Who:int, Type:String):
 	if Who == 1:
 		if Type == "Raw":
@@ -1697,6 +1798,7 @@ func BattleForMe(Who:int, Type:String):
 					Response += "\n" + listOfCharacterNames[TempCharacter2] + " hurls an arrow at" + listOfCharacterNames[TempCharacter1] + " with their bow"
 					BruteForceVariableChanger(TempCharacter1,"Health",-4)
 
+#Int Tax ❌
 func HungerRemoverFunction():
 	BruteForceVariableChanger(0,"Hunger",-1)
 	BruteForceVariableChanger(1,"Hunger",-1)
@@ -1709,6 +1811,7 @@ func HungerRemoverFunction():
 	BruteForceVariableChanger(8,"Hunger",-1)
 	BruteForceVariableChanger(9,"Hunger",-1)
 
+#Dynamic Int Tax ❌
 func FurtherEffects():
 	
 	#Starvation🍽
@@ -1764,3 +1867,36 @@ func FurtherEffects():
 	if BruteForceVariableGetter(9,"Sanity") == 0:
 		if rng.randi_range(0,1) == 1:
 			BruteForceVariableChanger(9,"Might",-1)
+
+#Checks if your dead and we didn't know that
+func DeathChecker():
+	if BruteForceVariableGetter(0,"Health") < 0 && listOfNumbers.has(0):
+		Response += "\n" + listOfCharacterNames[0] + " dies"
+		listOfNumbers.erase(0)
+	if BruteForceVariableGetter(1,"Health") < 0 && listOfNumbers.has(1):
+		Response += "\n" + listOfCharacterNames[1] + " dies"
+		listOfNumbers.erase(1)
+	if BruteForceVariableGetter(2,"Health") < 0 && listOfNumbers.has(2):
+		Response += "\n" + listOfCharacterNames[2] + " dies"
+		listOfNumbers.erase(2)
+	if BruteForceVariableGetter(3,"Health") < 0 && listOfNumbers.has(3):
+		Response += "\n" + listOfCharacterNames[3] + " dies"
+		listOfNumbers.erase(3)
+	if BruteForceVariableGetter(4,"Health") < 0 && listOfNumbers.has(4):
+		Response += "\n" + listOfCharacterNames[4] + " dies"
+		listOfNumbers.erase(4)
+	if BruteForceVariableGetter(5,"Health") < 0 && listOfNumbers.has(5):
+		Response += "\n" + listOfCharacterNames[5] + " dies"
+		listOfNumbers.erase(5)
+	if BruteForceVariableGetter(6,"Health") < 0 && listOfNumbers.has(6):
+		Response += "\n" + listOfCharacterNames[6] + " dies"
+		listOfNumbers.erase(6)
+	if BruteForceVariableGetter(7,"Health") < 0 && listOfNumbers.has(7):
+		Response += "\n" + listOfCharacterNames[7] + " dies"
+		listOfNumbers.erase(7)
+	if BruteForceVariableGetter(8,"Health") < 0 && listOfNumbers.has(8):
+		Response += "\n" + listOfCharacterNames[8] + " dies"
+		listOfNumbers.erase(8)
+	if BruteForceVariableGetter(9,"Health") < 0 && listOfNumbers.has(9):
+		Response += "\n" + listOfCharacterNames[9] + " dies"
+		listOfNumbers.erase(9)

@@ -68,10 +68,10 @@ texture = ExtResource("6_wdv85")
 
 [node name="Simulator\'s Box" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 455.714
-offset_top = 148.571
-offset_right = 1855.71
-offset_bottom = 1023.57
+offset_left = 355.714
+offset_top = 150.0
+offset_right = 1955.71
+offset_bottom = 1150.0
 color = Color(0, 0, 0, 1)
 
 [node name="CommandProcessor" type="Node" parent="."]
@@ -79,10 +79,10 @@ script = ExtResource("2_1w7dg")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 555.714
+offset_left = 455.714
 offset_top = 248.571
-offset_right = 1755.71
-offset_bottom = 923.571
+offset_right = 1855.71
+offset_bottom = 1023.57
 theme = SubResource("Theme_yp4ki")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]

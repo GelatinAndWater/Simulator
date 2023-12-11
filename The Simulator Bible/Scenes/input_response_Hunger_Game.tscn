@@ -5,12 +5,12 @@
 
 [sub_resource type="Theme" id="Theme_turge"]
 Label/colors/font_color = Color(0.75, 0.75, 0.75, 1)
-Label/font_sizes/font_size = 12
+Label/font_sizes/font_size = 18
 Label/fonts/font = ExtResource("1_vitk4")
 
 [sub_resource type="Theme" id="Theme_xo860"]
 Label/colors/font_color = Color(1, 1, 1, 1)
-Label/font_sizes/font_size = 16
+Label/font_sizes/font_size = 22
 Label/fonts/font = ExtResource("1_vitk4")
 
 [node name="InputResponse" type="VBoxContainer"]
@@ -20,6 +20,7 @@ script = ExtResource("1_q3x4i")
 layout_mode = 2
 theme = SubResource("Theme_turge")
 text = " > This is what the person typed"
+autowrap_mode = 1
 
 [node name="Response" type="Label" parent="."]
 layout_mode = 2

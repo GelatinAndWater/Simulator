@@ -10,10 +10,14 @@ func _input(event):
 			Global.transitioning_menu = false
 			get_tree().change_scene_to_file("res://Main Menu/Menu.tscn")
 
+
 func _on_return_button_mouse_entered():
 	if !Global.transitioning_menu:
+		print("Playing Forward Options")
 		$AnimationPlayer.play("Return_Button")
+
 
 func _on_return_button_mouse_exited():
 	if !Global.transitioning_menu:
+		print("Playing Backward Options")
 		$AnimationPlayer.play_backwards("Return_Button")

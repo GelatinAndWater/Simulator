@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Simulator Bible"
-run/main_scene="res://Options/Options.tscn"
+run/main_scene="res://Scenes/Hunger_games.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
