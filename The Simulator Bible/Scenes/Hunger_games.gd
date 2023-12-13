@@ -1188,7 +1188,7 @@ func ViolenceEvent():
 				
 				if BruteForceVariableGetter(TempCharacter1, "Health") < 0:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " dies"
-					listOfNumbers.erase(TempCharacter2)
+					listOfNumbers.erase(TempCharacter1)
 					VarCheckerTemp2 = false
 				elif ((BruteForceVariableGetter(TempCharacter1,"Health") / 11) - (10/11))^2 < rng.randf_range(0,1):
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " runs away from the fight"
@@ -1681,7 +1681,7 @@ func BruteForceArrayGetter(Character, Element):
 func BattleForMe(Who:int, Type:String):
 	if Who == 1:
 		if Type == "Raw":
-			SimulateRandomNumber = rng.randi_range(1,10)
+			SimulateRandomNumber = rng.randi_range(1,13)
 			if SimulateRandomNumber == 1:
 				Response += "\n" + listOfCharacterNames[TempCharacter1] + " punches " + listOfCharacterNames[TempCharacter2]
 				BruteForceVariableChanger(TempCharacter2,"Health",-2)
@@ -1712,6 +1712,15 @@ func BattleForMe(Who:int, Type:String):
 			elif SimulateRandomNumber == 10:
 				Response += "\n" + listOfCharacterNames[TempCharacter1] + " slams down their fist on " + listOfCharacterNames[TempCharacter2] + "'s head"
 				BruteForceVariableChanger(TempCharacter2,"Health",-1)
+			elif SimulateRandomNumber == 11:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " berate " + listOfCharacterNames[TempCharacter2] + "'s personality"
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 12:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " pops " + listOfCharacterNames[TempCharacter2] + "'s knee"
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
+			elif SimulateRandomNumber == 13:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " bops " + listOfCharacterNames[TempCharacter2] + "'s chin"
+				BruteForceVariableChanger(TempCharacter2,"Health",-2)
 		elif Type == "Weapon":
 			SimulateRandomNumber = rng.randi_range(1,2)
 			if BruteForceArrayGetter(TempCharacter1, "Belongings").has("Sword"):
@@ -1721,6 +1730,9 @@ func BattleForMe(Who:int, Type:String):
 					BruteForceVariableChanger(TempCharacter2,"Health",-5)
 				elif SimulateRandomNumber == 2:
 					Response += "\n" + listOfCharacterNames[TempCharacter1] + " slashes" + listOfCharacterNames[TempCharacter2] + " with their sword"
+					BruteForceVariableChanger(TempCharacter2,"Health",-4)
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " impales " + listOfCharacterNames[TempCharacter1] + " with their sword"
 					BruteForceVariableChanger(TempCharacter2,"Health",-4)
 			elif BruteForceArrayGetter(TempCharacter1, "Belongings").has("Melee"):
 				BruteForceArrayChanger(TempCharacter1, "Melee", "Subtract", "Belongings")
@@ -1740,7 +1752,7 @@ func BattleForMe(Who:int, Type:String):
 					BruteForceVariableChanger(TempCharacter2,"Health",-4)
 	elif Who == 2:
 		if Type == "Raw":
-			SimulateRandomNumber = rng.randi_range(1,10)
+			SimulateRandomNumber = rng.randi_range(1,13)
 			if SimulateRandomNumber == 1:
 				Response += "\n" + listOfCharacterNames[TempCharacter2] + " punches " + listOfCharacterNames[TempCharacter1]
 				BruteForceVariableChanger(TempCharacter1,"Health",-2)
@@ -1766,11 +1778,20 @@ func BattleForMe(Who:int, Type:String):
 				Response += "\n" + listOfCharacterNames[TempCharacter2] + " snaps " + listOfCharacterNames[TempCharacter1] + "'s ribs"
 				BruteForceVariableChanger(TempCharacter1,"Health",-3)
 			elif SimulateRandomNumber == 9:
-				Response += "\n" + listOfCharacterNames[TempCharacter2] + " headbutts " + listOfCharacterNames[TempCharacter1]
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " headbutts " + listOfCharacterNames[TempCharacter2]
 				BruteForceVariableChanger(TempCharacter1,"Health",-2)
 			elif SimulateRandomNumber == 10:
-				Response += "\n" + listOfCharacterNames[TempCharacter2] + " slams down their fist on " + listOfCharacterNames[TempCharacter1] + "'s head"
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " slams down their fist on " + listOfCharacterNames[TempCharacter2] + "'s head"
 				BruteForceVariableChanger(TempCharacter1,"Health",-1)
+			elif SimulateRandomNumber == 11:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " berate " + listOfCharacterNames[TempCharacter2] + "'s personality"
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 12:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " pops " + listOfCharacterNames[TempCharacter2] + "'s knee"
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
+			elif SimulateRandomNumber == 13:
+				Response += "\n" + listOfCharacterNames[TempCharacter1] + " bops " + listOfCharacterNames[TempCharacter2] + "'s chin"
+				BruteForceVariableChanger(TempCharacter1,"Health",-2)
 		elif Type == "Weapon":
 			SimulateRandomNumber = rng.randi_range(1,2)
 			if BruteForceArrayGetter(TempCharacter2, "Belongings").has("Sword"):
@@ -1780,6 +1801,9 @@ func BattleForMe(Who:int, Type:String):
 					BruteForceVariableChanger(TempCharacter1,"Health",-5)
 				elif SimulateRandomNumber == 2:
 					Response += "\n" + listOfCharacterNames[TempCharacter2] + " slashes" + listOfCharacterNames[TempCharacter1] + " with their sword"
+					BruteForceVariableChanger(TempCharacter1,"Health",-4)
+				elif SimulateRandomNumber == 3:
+					Response += "\n" + listOfCharacterNames[TempCharacter2] + " impales " + listOfCharacterNames[TempCharacter1] + " with their sword"
 					BruteForceVariableChanger(TempCharacter1,"Health",-4)
 			elif BruteForceArrayGetter(TempCharacter2, "Belongings").has("Melee"):
 				BruteForceArrayChanger(TempCharacter2, "Melee", "Subtract", "Belongings")
